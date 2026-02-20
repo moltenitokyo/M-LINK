@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Molteni & C | Central Hub</title>
     <style>
-        /* フォントの読み込み（Bodoniに近いGoogle Fontを使用。お持ちのフォントファイルがある場合は差し替え可能です） */
+        /* Bodoniフォントの読み込み */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&display=swap');
 
         :root {
@@ -24,7 +24,6 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* iPhoneのセーフエリア対応 */
             padding-bottom: env(safe-area-inset-bottom);
         }
 
@@ -35,55 +34,52 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 80vh;
+            min-height: 85vh;
         }
 
-        /* ブランドロゴ部分 */
+        /* ブランドロゴ */
         .brand-name {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 400;
             letter-spacing: 0.05em;
-            margin-bottom: 60px;
-            /* Molteni&Cのロゴに寄せる場合はこちらを調整 */
+            margin-bottom: 80px;
         }
 
         /* リンクナビゲーション */
         nav {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* ボタン間の余白 */
+            gap: 35px; /* 指定の通り広めの行間 */
         }
 
         .link-item {
             text-decoration: none;
             color: var(--text-color);
-            font-size: 18px;
-            letter-spacing: 0.02em;
+            font-size: 14px; /* 指定の通り小さめに設定 */
+            letter-spacing: 0.08em;
             transition: opacity 0.4s ease;
-            /* タップエリアを確保（枠線は見えないが、押しやすくする） */
-            padding: 10px 0;
+            padding: 5px 0;
             display: block;
         }
 
-        /* タップした時のフィードバック */
+        /* タップフィードバック */
         .link-item:active {
-            opacity: 0.4;
+            opacity: 0.3;
         }
 
-        /* PCでの閲覧時のみホバー効果 */
         @media (hover: hover) {
             .link-item:hover {
                 opacity: 0.5;
             }
         }
 
-        /* フッター（コピーライトなど） */
+        /* フッター */
         .footer {
-            margin-top: 80px;
-            font-size: 11px;
-            letter-spacing: 0.1em;
+            margin-top: 100px;
+            font-size: 10px;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -93,12 +89,12 @@
         <h1 class="brand-name">Molteni&C</h1>
 
         <nav>
-            <!-- リンク先（href）を実際のURLに書き換えてください -->
-            <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item">Store Tour</a>
-            <a href="https://www.molteni.it/jp/category/news#" class="link-item">New Collection</a>
-            <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item">Geometry of Life</a>
-            <a href="https://www.instagram.com/molteniandc/" class="link-item">Instagram</a>
-            <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item">Contact</a>
+            <!-- ご指定のURLと文言、すべて新しいタブで開く設定 -->
+            <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank" rel="noopener noreferrer">Store Tour</a>
+            <a href="https://www.molteni.it/jp/category/news#" class="link-item" target="_blank" rel="noopener noreferrer">New Collection</a>
+            <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank" rel="noopener noreferrer">Geometry of Life</a>
+            <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item" target="_blank" rel="noopener noreferrer">Contact</a>
         </nav>
 
         <div class="footer">
