@@ -11,12 +11,12 @@
             --bg-color: #E2E2E2;
             --text-color: #37393b;
             --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
-            --side-padding: 35px;
-            /* 全体的にフォントサイズをさらに下げました */
-            --h2-size: 15px; 
-            --h3-size: 13px;
-            --item-size: 12px;
-            --small-size: 10px;
+            --side-padding: 30px;
+            /* フォントサイズ設定 */
+            --h2-size: 14px; 
+            --h3-size: 12px;
+            --item-size: 11px;
+            --small-size: 9px;
         }
 
         body {
@@ -30,7 +30,8 @@
         }
 
         .wrapper {
-            padding: 60px var(--side-padding);
+            /* 上部の余白を詰め、全体を上に寄せました */
+            padding: 40px var(--side-padding);
             max-width: 100%;
             display: flex;
             flex-direction: column;
@@ -38,64 +39,60 @@
         }
 
         .brand-logo {
-            font-size: 22px;
-            margin-bottom: 60px;
+            font-size: 20px;
+            margin-bottom: 30px; /* ロゴ下の余白を半分に */
             letter-spacing: 0.05em;
         }
 
-        /* セクション */
+        /* 各セクションの行間を極限まで詰めました */
         section {
             width: 100%;
-            margin-bottom: 18px;
+            margin-bottom: 4px; 
         }
 
-        /* H2見出し */
         h2 {
             font-size: var(--h2-size);
             font-weight: 400;
             margin: 0;
             cursor: pointer;
-            padding: 5px 0;
+            padding: 2px 0; /* タップの反応を維持しつつ見た目を詰め */
             display: inline-block;
         }
 
-        /* アコーディオンコンテンツ */
         .content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s;
+            transition: max-height 0.3s ease-out, opacity 0.3s;
             opacity: 0;
-            padding-left: 2px;
         }
 
-        /* 常時開いている設定（What's New用）またはJSで開いた時 */
+        /* オープン時の余白も最小限に */
         section.open .content {
             max-height: 2000px;
             opacity: 1;
-            margin-top: 8px;
-            margin-bottom: 15px;
+            margin-top: 2px;
+            margin-bottom: 8px;
         }
 
-        /* H3見出し（ビデオ用） */
+        /* ビデオのタイトル（H3） */
         .video-trigger {
             font-size: var(--h3-size);
             font-weight: 400;
-            margin: 15px 0 5px 0;
+            margin: 4px 0 2px 0;
             cursor: pointer;
             display: block;
             opacity: 0.8;
         }
 
-        /* ビデオコンテナ（初期は非表示） */
         .video-wrapper {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+            transition: max-height 0.4s ease-in-out;
         }
 
         .video-wrapper.show {
             max-height: 400px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .video-container {
@@ -103,7 +100,7 @@
             padding-bottom: 56.25%;
             height: 0;
             background: #d8d8d8;
-            margin-top: 10px;
+            margin: 5px 0;
         }
 
         .video-container iframe {
@@ -111,33 +108,31 @@
             top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
-        /* リンクアイテム */
         .link-item {
             text-decoration: none;
             color: var(--text-color);
             font-size: var(--item-size);
-            padding: 6px 0;
+            padding: 3px 0;
             display: block;
             opacity: 0.9;
         }
 
-        /* 余白設定 */
+        /* 「広めの行間」も、全体のバランスに合わせて縮小調整 */
         .gap-large {
-            margin-bottom: 50px;
+            margin-bottom: 25px;
         }
 
-        /* 下部リンク群 */
         .small-links {
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .small-links .link-item {
             font-size: var(--small-size);
-            padding: 4px 0;
+            padding: 2px 0;
             letter-spacing: 0.05em;
         }
 
         .footer {
-            margin-top: 80px;
+            margin-top: 40px;
             font-size: 8px;
             opacity: 0.4;
             letter-spacing: 0.1em;
@@ -167,18 +162,16 @@
             </div>
         </section>
 
-        <!-- Identity -->
+        <!-- Identity (広い余白) -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">Identity</h2>
             <div class="content">
-                <!-- ビデオはH3タップで表示 -->
                 <span class="video-trigger" onclick="toggleVideo(this)">90th Anniversary Video</span>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <iframe src="https://player.vimeo.com/video/VIMEO_ID_1" allowfullscreen></iframe>
                     </div>
                 </div>
-
                 <span class="video-trigger" onclick="toggleVideo(this)">Molteni Mind</span>
                 <div class="video-wrapper">
                     <div class="video-container">
@@ -210,7 +203,7 @@
             </div>
         </section>
 
-        <!-- Our Stock -->
+        <!-- Our Stock (広い余白) -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">Our Stock</h2>
             <div class="content">
@@ -232,13 +225,11 @@
     </div>
 
     <script>
-        // H2カテゴリの開閉
         function toggle(element) {
             const section = element.parentElement;
             section.classList.toggle('open');
         }
 
-        // H3ビデオの開閉（階層を深くする仕様）
         function toggleVideo(element) {
             const wrapper = element.nextElementSibling;
             wrapper.classList.toggle('show');
