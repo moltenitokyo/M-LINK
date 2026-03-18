@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Molteni & C | Central Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&display=swap');
@@ -11,9 +11,10 @@
             --bg-color: #E2E2E2;
             --text-color: #37393b;
             --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
-            --side-padding: 40px;
-            --section-gap: 40px;
-            --large-gap: 100px; /* 特定セクション間の広い余白 */
+            --side-padding: 30px;
+            --h2-size: 17px;
+            --item-size: 14px;
+            --small-size: 11px;
         }
 
         body {
@@ -22,95 +23,109 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 全体コンテナ：左寄せ */
         .wrapper {
-            padding: 60px var(--side-padding);
-            max-width: 600px; /* スマホ・PC共通で美しく見える幅 */
+            padding: 50px var(--side-padding);
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 左寄せ */
         }
 
         .brand-logo {
-            font-size: 26px;
-            margin-bottom: 80px;
-            font-weight: 400;
+            font-size: 24px;
+            margin-bottom: 50px;
+            letter-spacing: 0.05em;
         }
 
-        /* セクション構造 */
+        /* セクション全体 */
         section {
-            margin-bottom: var(--section-gap);
+            width: 100%;
+            margin-bottom: 22px; /* 基本の行間 */
         }
 
-        /* カテゴリ見出し */
+        /* H2見出し：タップ可能 */
         h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0 0 15px 0;
-        }
-
-        /* リンクアイテム */
-        .link-list {
-            list-style: none;
-            padding: 0;
+            font-size: var(--h2-size);
+            font-weight: 400;
             margin: 0;
-        }
-
-        .link-item {
-            display: block;
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 15px;
-            padding: 8px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
             transition: opacity 0.3s;
         }
 
-        .link-item:active, .link-item:hover {
-            opacity: 0.4;
+        h2:active {
+            opacity: 0.5;
+        }
+
+        /* 開閉するコンテンツ部分（初期は非表示） */
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            padding-left: 2px; /* わずかなインデント */
+        }
+
+        /* オープン時のスタイル */
+        section.open .content {
+            max-height: 1000px; /* 十分な高さ */
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* リンクアイテム */
+        .link-item {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: var(--item-size);
+            padding: 8px 0;
+            display: block;
+            border: none;
+            background: none;
+            text-align: left;
+            font-family: var(--font-main);
+        }
+
+        /* 特別な広い余白（IdentityとPalazzoの間、OurStockとSocialの間） */
+        .gap-large {
+            margin-bottom: 60px;
         }
 
         /* ビデオ埋め込み */
         .video-container {
-            margin: 15px 0 25px 0;
+            margin: 10px 0 20px 0;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
-            overflow: hidden;
-            background: #d0d0d0;
+            background: #dcdcdc;
         }
-
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
-        /* 特別の広い余白設定 */
-        .gap-large {
-            margin-bottom: var(--large-gap);
+        /* 下部リンク群（Instagram, Youtube, Contact） */
+        .small-links {
+            margin-top: 20px;
         }
-
-        /* 下部リンク（Instagram, Youtube, Contact） */
         .small-links .link-item {
-            font-size: 12px;
+            font-size: var(--small-size);
+            padding: 5px 0;
             letter-spacing: 0.05em;
         }
 
         .footer {
-            margin-top: 120px;
-            font-size: 10px;
+            margin-top: 60px;
+            font-size: 9px;
             opacity: 0.5;
             letter-spacing: 0.1em;
-        }
-
-        /* スマホ向け調整 */
-        @media (max-width: 480px) {
-            :root { --side-padding: 30px; }
-            .brand-logo { margin-bottom: 60px; }
         }
     </style>
 </head>
@@ -121,43 +136,41 @@
 
         <!-- What’s New -->
         <section>
-            <h2>What’s New</h2>
-            <div class="link-list">
-                <a href="YOUR_PDF_URL_HERE" class="link-item" target="_blank">New collection catalogue 2026 - JPN</a>
+            <h2 onclick="toggle(this)">What’s New</h2>
+            <div class="content">
+                <a href="PDF_URL" class="link-item" target="_blank">New collection catalogue 2026 - JPN</a>
                 <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">Geometry of life</a>
             </div>
         </section>
 
-        <!-- Catalogue & Price List -->
+        <!-- Catalogue -->
         <section>
-            <h2>Catalogue</h2>
-            <div class="link-list">
-                <a href="YOUR_ACTIBOOK_URL_HERE" class="link-item" target="_blank">Home Catalogue - ENG</a>
-                <a href="YOUR_PRICE_LIST_URL_HERE" class="link-item" target="_blank">Price List</a>
+            <h2 onclick="toggle(this)">Catalogue</h2>
+            <div class="content">
+                <a href="ACTIBOOK_URL" class="link-item" target="_blank">Home Catalogue - ENG</a>
+                <a href="PRICELIST_URL" class="link-item" target="_blank">Price List</a>
             </div>
         </section>
 
         <!-- Identity -->
         <section class="gap-large">
-            <h2>Identity</h2>
-            <div class="link-list">
+            <h2 onclick="toggle(this)">Identity</h2>
+            <div class="content">
                 <span class="link-item">90th Anniversary Video</span>
                 <div class="video-container">
-                    <!-- Vimeo IDを書き換えてください -->
-                    <iframe src="https://player.vimeo.com/video/VIMEO_ID_1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://player.vimeo.com/video/VIMEO_ID_1" allowfullscreen></iframe>
                 </div>
                 <span class="link-item">Molteni Mind</span>
                 <div class="video-container">
-                    <!-- Vimeo IDを書き換えてください -->
-                    <iframe src="https://player.vimeo.com/video/VIMEO_ID_2" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://player.vimeo.com/video/VIMEO_ID_2" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
         <!-- Palazzo Molteni Tokyo -->
         <section>
-            <h2>Palazzo Molteni Tokyo</h2>
-            <div class="link-list">
+            <h2 onclick="toggle(this)">Palazzo Molteni Tokyo</h2>
+            <div class="content">
                 <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">Floor tour</a>
                 <a href="https://vimeo.com/VIMEO_ID_3" class="link-item" target="_blank">Architectural Story</a>
             </div>
@@ -165,34 +178,46 @@
 
         <!-- Osaka -->
         <section>
-            <h2>Osaka</h2>
-            <div class="link-list">
-                <span class="link-item" style="opacity: 0.3;">Coming soon</span>
+            <h2 onclick="toggle(this)">Osaka</h2>
+            <div class="content">
+                <span class="link-item" style="opacity: 0.4;">Coming soon</span>
             </div>
         </section>
 
         <!-- Our Stock -->
         <section class="gap-large">
-            <h2>Our Stock</h2>
-            <div class="link-list">
-                <a href="YOUR_STOCK_URL" class="link-item" target="_blank">Stock</a>
-                <a href="YOUR_SAMPLES_URL" class="link-item" target="_blank">Floor Samples</a>
+            <h2 onclick="toggle(this)">Our Stock</h2>
+            <div class="content">
+                <a href="STOCK_URL" class="link-item" target="_blank">Stock</a>
+                <a href="SAMPLES_URL" class="link-item" target="_blank">Floor Samples</a>
             </div>
         </section>
 
         <!-- Social & Contact -->
         <section class="small-links">
-            <div class="link-list">
-                <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
-                <a href="https://www.youtube.com/@moltenimultimedia" class="link-item" target="_blank">Youtube</a>
-                <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item" target="_blank">Contact</a>
-            </div>
+            <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
+            <a href="https://www.youtube.com/@moltenimultimedia" class="link-item" target="_blank">Youtube</a>
+            <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item" target="_blank">Contact</a>
         </section>
 
         <div class="footer">
             &copy; 2026 Molteni&C
         </div>
     </div>
+
+    <script>
+        function toggle(element) {
+            // 親のsection要素を取得
+            const section = element.parentElement;
+            // 他のセクションを閉じる場合は以下を有効に（今回はあえて自由に開閉できる仕様にしています）
+            /*
+            document.querySelectorAll('section').forEach(s => {
+                if(s !== section) s.classList.remove('open');
+            });
+            */
+            section.classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>
