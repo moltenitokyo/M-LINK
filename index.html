@@ -12,7 +12,6 @@
             --text-color: #37393b;
             --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --side-padding: 30px;
-            /* フォントサイズ設定 */
             --h2-size: 14px; 
             --h3-size: 12px;
             --item-size: 11px;
@@ -20,8 +19,7 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
@@ -30,7 +28,6 @@
         }
 
         .wrapper {
-            /* 上部の余白を詰め、全体を上に寄せました */
             padding: 40px var(--side-padding);
             max-width: 100%;
             display: flex;
@@ -38,111 +35,81 @@
             align-items: flex-start;
         }
 
-        .brand-logo {
-            font-size: 20px;
-            margin-bottom: 30px; /* ロゴ下の余白を半分に */
-            letter-spacing: 0.05em;
+        /* ロゴPNGの設定 */
+        .brand-logo-img {
+            width: 140px; /* ロゴの表示サイズ。適宜調整してください */
+            height: auto;
+            margin-bottom: 30px;
+            display: block;
         }
 
-        /* 各セクションの行間を極限まで詰めました */
-        section {
-            width: 100%;
-            margin-bottom: 4px; 
-        }
+        section { width: 100%; margin-bottom: 4px; }
 
         h2 {
-            font-size: var(--h2-size);
-            font-weight: 400;
-            margin: 0;
-            cursor: pointer;
-            padding: 2px 0; /* タップの反応を維持しつつ見た目を詰め */
+            font-size: var(--h2-size); font-weight: 400;
+            margin: 0; cursor: pointer; padding: 2px 0;
             display: inline-block;
         }
 
         .content {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.3s ease-out, opacity 0.3s;
             opacity: 0;
         }
 
-        /* オープン時の余白も最小限に */
         section.open .content {
-            max-height: 2000px;
-            opacity: 1;
-            margin-top: 2px;
-            margin-bottom: 8px;
+            max-height: 2000px; opacity: 1; margin-top: 2px; margin-bottom: 8px;
         }
 
-        /* ビデオのタイトル（H3） */
         .video-trigger {
-            font-size: var(--h3-size);
-            font-weight: 400;
-            margin: 4px 0 2px 0;
-            cursor: pointer;
-            display: block;
-            opacity: 0.8;
+            font-size: var(--h3-size); font-weight: 400;
+            margin: 4px 0 2px 0; cursor: pointer;
+            display: block; opacity: 0.8;
         }
 
         .video-wrapper {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.4s ease-in-out;
         }
 
         .video-wrapper.show {
-            max-height: 400px;
-            margin-bottom: 10px;
+            max-height: 400px; margin-bottom: 10px;
         }
 
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #d8d8d8;
-            margin: 5px 0;
+            position: relative; padding-bottom: 56.25%; height: 0;
+            background: #d8d8d8; margin: 5px 0;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; border: none;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
         .link-item {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: var(--item-size);
-            padding: 3px 0;
-            display: block;
-            opacity: 0.9;
+            text-decoration: none; color: var(--text-color);
+            font-size: var(--item-size); padding: 3px 0;
+            display: block; opacity: 0.9;
         }
 
-        /* 「広めの行間」も、全体のバランスに合わせて縮小調整 */
-        .gap-large {
-            margin-bottom: 25px;
-        }
+        .gap-large { margin-bottom: 25px; }
 
-        .small-links {
-            margin-top: 10px;
-        }
+        .small-links { margin-top: 10px; }
         .small-links .link-item {
-            font-size: var(--small-size);
-            padding: 2px 0;
+            font-size: var(--small-size); padding: 2px 0;
             letter-spacing: 0.05em;
         }
 
         .footer {
-            margin-top: 40px;
-            font-size: 8px;
-            opacity: 0.4;
-            letter-spacing: 0.1em;
+            margin-top: 40px; font-size: 8px;
+            opacity: 0.4; letter-spacing: 0.1em;
         }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <div class="brand-logo">Molteni&C</div>
+        <!-- ロゴ画像をここに配置（logo.pngという名前でアップロードしてください） -->
+        <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
         <!-- What’s New (常に開いている) -->
         <section class="open">
@@ -158,9 +125,9 @@
             <h2 onclick="toggle(this)">カタログ</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank">Home Catalogue - ENG</a>
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MTZ9&detailFlg=0&pNo=1" class="link-item" target="_blank">Kitchen Colection2025 - ENG</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MTZ9&detailFlg=0&pNo=1" class="link-item" target="_blank">Kitchen Colection 2025 - ENG</a>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjF9&detailFlg=1&pNo=1" class="link-item" target="_blank">ジオ・ポンティ ヘリテージコレクション</a>
-                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjB9&detailFlg=0&pNo=1" class="link-item" target="_blank">Moltenni&C 製品カタログ</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjB9&detailFlg=0&pNo=1" class="link-item" target="_blank">Molteni&C 製品カタログ</a>
             </div>
         </section>
 
@@ -171,7 +138,8 @@
                 <span class="video-trigger" onclick="toggleVideo(this)">An Italian Design Story</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://vimeo.com/user244623834/palazzomoltenitokyo-history?share=copy&fl=sv&fe=ci" allowfullscreen></iframe>
+                        <!-- Palazzo Molteni History 動画ID 1068835154 -->
+                        <iframe src="https://player.vimeo.com/video/1068835154" allowfullscreen></iframe>
                     </div>
                 </div>
                 <span class="video-trigger" onclick="toggleVideo(this)">Molteni Mind</span>
@@ -191,7 +159,8 @@
                 <span class="video-trigger" onclick="toggleVideo(this)">Architectural Story</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://vimeo.com/user244623834/palazzomoltenitokyo-vvd?share=copy&fl=sv&fe=ci" allowfullscreen></iframe>
+                        <!-- Palazzo Molteni VVD 動画ID 1068833984 -->
+                        <iframe src="https://player.vimeo.com/video/1068833984" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -221,22 +190,16 @@
             <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item" target="_blank">Contact</a>
         </section>
 
-        <div class="footer">
-            &copy; 2026 Molteni&C
-        </div>
+        <div class="footer">&copy; 2026 Molteni&C</div>
     </div>
 
     <script>
         function toggle(element) {
-            const section = element.parentElement;
-            section.classList.toggle('open');
+            element.parentElement.classList.toggle('open');
         }
-
         function toggleVideo(element) {
-            const wrapper = element.nextElementSibling;
-            wrapper.classList.toggle('show');
+            element.nextElementSibling.classList.toggle('show');
         }
     </script>
-
 </body>
 </html>
