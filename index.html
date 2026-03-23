@@ -12,7 +12,7 @@
             --text-color: #37393b;
             --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --side-padding: 30px;
-            --h2-size: 16px; 
+            --h2-size: 20px; 
             --h3-size: 14px;
             --item-size: 14px;
             --small-size: 13px;
@@ -49,6 +49,7 @@
             font-size: var(--h2-size); font-weight: 400;
             margin: 0; cursor: pointer; padding: 2px 0;
             display: inline-block;
+            text-transform: uppercase; 
         }
 
         .content {
@@ -111,12 +112,21 @@
         <!-- ロゴ画像をここに配置（logo.pngという名前でアップロードしてください） -->
         <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
-        <!-- What’s New (常に開いている) -->
+        <!-- WHAT'S NEW (常に開いている) -->
         <section class="open">
             <h2>What’s New</h2>
             <div class="content">
                 <a href="PDF_URL" class="link-item" target="_blank">新製品カタログ 2026</a>
                 <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">Geometry of life</a>
+            </div>
+        </section>
+         <!-- NEWS (広い余白) -->
+         <section class="gap-large">
+            <h2 onclick="toggle(this)">News</h2>
+            <div class="content">
+                <a href="STOCK_URL" class="link-item" target="_blank">ミラノ・サローネ2026</a>
+                <a href="SAMPLES_URL" class="link-item" target="_blank">イベント情報</a>
+                <a href="SAMPLES_URL" class="link-item" target="_blank">廃盤情報</a>
             </div>
         </section>
 
@@ -137,16 +147,6 @@
                         <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&loop=1&muted=1&controls=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-         <!-- News (広い余白) -->
-        <section class="gap-large">
-            <h2 onclick="toggle(this)">News</h2>
-            <div class="content">
-                <a href="STOCK_URL" class="link-item" target="_blank">ミラノ・サローネ2026</a>
-                <a href="SAMPLES_URL" class="link-item" target="_blank">イベント情報</a>
-                <a href="SAMPLES_URL" class="link-item" target="_blank">廃盤情報</a>
             </div>
         </section>
         
