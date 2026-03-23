@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Molteni & C | Central Hub</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&display=swap');
+        /* Google Fonts: Libre Bodoni と Zen Kaku Gothic New を両方読み込み */
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
             --bg-color: #E2E2E2;
             --text-color: #37393b;
-            --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
+            /* 
+               Bodoniを先に書くことで英数字に適用、
+               日本語はBodoniに文字がないため自動的に Zen Kaku Gothic New が適用されます 
+            */
+            --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", "Zen Kaku Gothic New", sans-serif;
             --side-padding: 30px;
             --h2-size: 21px;
             --h3-size: 15px;
@@ -55,25 +60,23 @@
             max-height: 0; overflow: hidden;
             transition: max-height 0.3s ease-out, opacity 0.3s;
             opacity: 0;
-            padding-left: 5px; /* 階層の深さを出すためのインデント */
+            padding-left: 5px; 
         }
 
         section.open > .content {
             max-height: 2000px; opacity: 1; margin-top: 2px; margin-bottom: 8px;
         }
 
-        /* 店舗名などのH3トリガー */
         .video-trigger {
             font-size: var(--h3-size); font-weight: 400;
             margin: 6px 0 2px 0; cursor: pointer;
             display: block; opacity: 0.8;
         }
 
-        /* 2階層目以降のコンテンツ */
         .video-wrapper {
             max-height: 0; overflow: hidden;
             transition: max-height 0.4s ease-in-out;
-            padding-left: 10px; /* さらにインデント */
+            padding-left: 10px;
         }
 
         .video-wrapper.show {
