@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Molteni & C | Central Hub</title>
-  <style>
+    <style>
         /* Google Fonts: Bodoni と Zen Kaku Gothic New を読み込み */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
             --bg-color: #E2E2E2;
-            --text-color: #000000; /* 真っ黒に設定 */
+            --text-color: #000000; /* 真っ黒 */
             
             /* H2（英字見出し）用：Bodoni優先 */
             --font-h2: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
-            
-            /* H3・本文（日本語メイン）用：Zen Kaku Gothic優先 */
+            /* H3・本文用：Zen Kaku Gothic優先 */
             --font-default: "Zen Kaku Gothic New", "Helvetica Neue", Arial, sans-serif;
             
             --side-padding: 30px;
             --h2-size: 21px;
             --h3-size: 15px;
             --item-size: 14px;
+            --info-size: 11px; /* 店舗詳細情報のサイズ */
             --small-size: 12px;
         }
 
@@ -29,7 +29,6 @@
             margin: 0; padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            /* 基本フォントをゴシックに設定 */
             font-family: var(--font-default);
             -webkit-tap-highlight-color: transparent;
             -webkit-font-smoothing: antialiased;
@@ -44,19 +43,15 @@
         }
 
         .brand-logo-img {
-            width: 120px;
-            height: auto;
-            margin-bottom: 25px;
-            display: block;
+            width: 120px; height: auto;
+            margin-bottom: 25px; display: block;
         }
 
         section { width: 100%; margin-bottom: 3px; }
 
-        /* H2のみBodoniを適用 */
         h2 {
             font-family: var(--font-h2);
-            font-size: var(--h2-size); 
-            font-weight: 400;
+            font-size: var(--h2-size); font-weight: 400;
             margin: 0; cursor: pointer; padding: 2px 0;
             display: inline-block;
             text-transform: uppercase; 
@@ -73,11 +68,22 @@
             max-height: 2000px; opacity: 1; margin-top: 2px; margin-bottom: 8px;
         }
 
-        /* H3以降はすべてbodyの基本設定（Zen Kaku Gothic）を継承します */
+        /* 店舗詳細テキストのスタイル */
+        .shop-info {
+            font-size: var(--info-size);
+            line-height: 1.7;
+            margin: 10px 0 15px 0;
+            opacity: 0.8;
+        }
+        .info-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
         .video-trigger {
-            font-size: var(--h3-size); font-weight: 500; /* 少しだけ太くして視認性アップ */
+            font-size: var(--h3-size); font-weight: 500;
             margin: 6px 0 2px 0; cursor: pointer;
-            display: block; opacity: 0.8;
+            display: block; opacity: 0.9;
         }
 
         .video-wrapper {
@@ -129,7 +135,7 @@
             <h2>WHAT'S NEW</h2>
             <div class="content">
                 <a href="PDF_URL" class="link-item" target="_blank">新製品カタログ 2026</a>
-                <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">ブランドムービー「Geometry of life」</a>
+                <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">Geometry of life</a>
             </div>
         </section>
 
@@ -143,17 +149,17 @@
             </div>
         </section>
 
-         <!-- Identity -->
-          <section class="gap-large">
+        <!-- IDENTITY -->
+        <section>
             <h2 onclick="toggle(this)">IDENTITY</h2>
             <div class="content">
-                <span class="video-trigger" onclick="toggleSub(this)">1934年創業のMolteni&C（モルテーニ）</span>
+                <span class="video-trigger" onclick="toggleSub(this)">An Italian Design Story</span>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
                     </div>
                 </div>
-                <span class="video-trigger" onclick="toggleSub(this)">世界的デザイナーとの共創</span>
+                <span class="video-trigger" onclick="toggleSub(this)">Molteni Mind</span>
                 <div class="video-wrapper">
                     <div class="video-container">
                         <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
@@ -162,7 +168,7 @@
             </div>
         </section>
         
-        <!-- Catalogue -->
+        <!-- CATALOGUE -->
         <section>
             <h2 onclick="toggle(this)">CATALOGUE</h2>
             <div class="content">
@@ -173,7 +179,7 @@
             </div>
         </section>
         
-        <!-- Price List -->
+        <!-- PRICE LIST -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">PRICE LIST</h2>
             <div class="content">
@@ -182,13 +188,22 @@
             </div>
         </section>
 
-        <!-- STORE (店舗情報の内包) -->
-        <section>
+        <!-- STORE -->
+        <section class="gap-large">
             <h2 onclick="toggle(this)">STORE</h2>
             <div class="content">
                 <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
                 <div class="video-wrapper">
+                    <!-- 店舗情報テキスト -->
+                    <div class="shop-info">
+                        東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
+                        TEL. 03-3400-3322<br>
+                        営業時間：11:00-18:00 ＜予約制＞<br>
+                        定休日：水曜・祝日<br>
+                        <a href="tel:0334003322" class="info-link">03-3400-3322</a> | <a href="mailto:info@molteni.jp" class="info-link">info@molteni.jp</a>
+                    </div>
+                    <!-- サブメニュー -->
                     <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
                     <span class="video-trigger" onclick="toggleSub(this)">Architectural Story</span>
                     <div class="video-wrapper">
@@ -205,16 +220,16 @@
             </div>
         </section>
 
-        <!-- Stock -->
+        <!-- STOCK -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">STOCK</h2>
             <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTd9&detailFlg=0&pNo=1" class="link-item" target="_blank">国内新品在庫品</a>
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTh9&detailFlg=0&pNo=1" class="link-item" target="_blank">国内展示品（旧品）在庫</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTd9&detailFlg=0&pNo=1" class="link-item" target="_blank">新品在庫品</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTh9&detailFlg=0&pNo=1" class="link-item" target="_blank">展示品（旧品）在庫</a>
             </div>
         </section>
 
-        <!-- Contact -->
+        <!-- CONTACT -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">CONTACT</h2>
             <div class="content">
@@ -223,12 +238,13 @@
             </div>
         </section>
 
-        <!-- Social -->
+        <!-- Social Links -->
         <section class="small-links">
             <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
         </section>
-        <div class="footer">&copy; Copyright ARFLEX JAPAN LTD. All rights reserved.</div>
+
+        <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
     <script>
