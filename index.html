@@ -12,10 +12,10 @@
             --text-color: #37393b;
             --font-main: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --side-padding: 30px;
-            --h2-size: 20px; 
-            --h3-size: 14px;
+            --h2-size: 21px;
+            --h3-size: 16px;
             --item-size: 14px;
-            --small-size: 13px;
+            --small-size: 12px;
         }
 
         body {
@@ -35,15 +35,14 @@
             align-items: flex-start;
         }
 
-        /* ロゴPNGの設定 */
         .brand-logo-img {
-            width: 140px; /* ロゴの表示サイズ。適宜調整してください */
+            width: 120px;
             height: auto;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: block;
         }
 
-        section { width: 100%; margin-bottom: 4px; }
+        section { width: 100%; margin-bottom: 3px; }
 
         h2 {
             font-size: var(--h2-size); font-weight: 400;
@@ -56,30 +55,34 @@
             max-height: 0; overflow: hidden;
             transition: max-height 0.3s ease-out, opacity 0.3s;
             opacity: 0;
+            padding-left: 5px; /* 階層の深さを出すためのインデント */
         }
 
-        section.open .content {
+        section.open > .content {
             max-height: 2000px; opacity: 1; margin-top: 2px; margin-bottom: 8px;
         }
 
+        /* 店舗名などのH3トリガー */
         .video-trigger {
             font-size: var(--h3-size); font-weight: 400;
-            margin: 4px 0 2px 0; cursor: pointer;
+            margin: 6px 0 2px 0; cursor: pointer;
             display: block; opacity: 0.8;
         }
 
+        /* 2階層目以降のコンテンツ */
         .video-wrapper {
             max-height: 0; overflow: hidden;
             transition: max-height 0.4s ease-in-out;
+            padding-left: 10px; /* さらにインデント */
         }
 
         .video-wrapper.show {
-            max-height: 400px; margin-bottom: 10px;
+            max-height: 800px; margin-bottom: 10px;
         }
 
         .video-container {
             position: relative; padding-bottom: 56.25%; height: 0;
-            background: #d8d8d8; margin: 5px 0;
+            background: #d8d8d8; margin: 8px 0;
         }
 
         .video-container iframe {
@@ -94,14 +97,14 @@
 
         .gap-large { margin-bottom: 25px; }
 
-        .small-links { margin-top: 10px; }
+        .small-links { margin-top: 15px; }
         .small-links .link-item {
             font-size: var(--small-size); padding: 2px 0;
             letter-spacing: 0.05em;
         }
 
         .footer {
-            margin-top: 40px; font-size: 8px;
+            margin-top: 50px; font-size: 8px;
             opacity: 0.4; letter-spacing: 0.1em;
         }
     </style>
@@ -109,7 +112,6 @@
 <body>
 
     <div class="wrapper">
-        <!-- ロゴ画像をここに配置（logo.pngという名前でアップロードしてください） -->
         <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
         <!-- WHAT'S NEW (常に開いている) -->
@@ -120,31 +122,31 @@
                 <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">Geometry of life</a>
             </div>
         </section>
-         <!-- NEWS (広い余白) -->
-         <section class="gap-large">
+
+        <!-- NEWS -->
+        <section class="gap-large">
             <h2 onclick="toggle(this)">News</h2>
             <div class="content">
-                <a href="STOCK_URL" class="link-item" target="_blank">ミラノ・サローネ2026</a>
-                <a href="SAMPLES_URL" class="link-item" target="_blank">イベント情報</a>
-                <a href="SAMPLES_URL" class="link-item" target="_blank">廃盤情報</a>
+                <a href="SALONE_URL" class="link-item" target="_blank">ミラノ・サローネ2026</a>
+                <a href="EVENT_URL" class="link-item" target="_blank">イベント情報</a>
+                <a href="DISCONTINUED_URL" class="link-item" target="_blank">廃盤情報</a>
             </div>
         </section>
 
-         <!-- Identity  -->
-        <section>
+         <!-- Identity -->
+          <section>
             <h2 onclick="toggle(this)">Identity</h2>
             <div class="content">
-                <span class="video-trigger" onclick="toggleVideo(this)">An Italian Design Story</span>
+                <span class="video-trigger" onclick="toggleSub(this)">An Italian Design Story</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <!-- Palazzo Molteni History 動画ID 1068835154 -->
-                       <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&loop=1&muted=1&controls=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
                     </div>
                 </div>
-                <span class="video-trigger" onclick="toggleVideo(this)">Molteni Mind</span>
+                <span class="video-trigger" onclick="toggleSub(this)">Molteni Mind</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&loop=1&muted=1&controls=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -160,8 +162,8 @@
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjB9&detailFlg=0&pNo=1" class="link-item" target="_blank">Molteni&C 製品カタログ</a>
             </div>
         </section>
-            
-         <!-- Price List -->
+        
+        <!-- Price List -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">Price List</h2>
             <div class="content">
@@ -170,30 +172,30 @@
             </div>
         </section>
 
-        <!-- Palazzo Molteni Tokyo -->
-        <section>
-            <h2 onclick="toggle(this)">Palazzo Molteni Tokyo</h2>
+        <!-- STORE (店舗情報の内包) -->
+        <section class="gap-large">
+            <h2 onclick="toggle(this)">Store</h2>
             <div class="content">
-                <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
-                <span class="video-trigger" onclick="toggleVideo(this)">Architectural Story</span>
+                <!-- Tokyo Branch -->
+                <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
                 <div class="video-wrapper">
-                    <div class="video-container">
-                        <!-- Palazzo Molteni VVD 動画ID 1068833984 -->
-                        <iframe src="https://player.vimeo.com/video/1107962629?autoplay=1&loop=1&muted=1&controls=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
+                    <span class="video-trigger" onclick="toggleSub(this)">Architectural Story</span>
+                    <div class="video-wrapper">
+                        <div class="video-container">
+                            <iframe src="https://player.vimeo.com/video/1107962629?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
+                        </div>
                     </div>
+                </div>
+                <!-- Osaka Branch -->
+                <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
+                <div class="video-wrapper">
+                    <span class="link-item" style="opacity: 0.4;">Coming soon</span>
                 </div>
             </div>
         </section>
 
-        <!-- Osaka -->
-        <section>
-            <h2 onclick="toggle(this)">Molteni&C Osaka</h2>
-            <div class="content">
-                <span class="link-item" style="opacity: 0.4;">Coming soon</span>
-            </div>
-        </section>
-
-        <!-- Stock (広い余白) -->
+        <!-- Stock -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">Stock</h2>
             <div class="content">
@@ -202,7 +204,7 @@
             </div>
         </section>
 
-         <!-- Contact(広い余白) -->
+        <!-- Contact -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">Contact</h2>
             <div class="content">
@@ -211,13 +213,11 @@
             </div>
         </section>
 
-        <!-- Social & Contact -->
+        <!-- Social -->
         <section class="small-links">
             <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
-            <a href="https://www.molteni.it/store/tokyo-flagship-store/jp/#open-contact-form" class="link-item" target="_blank">Contact</a>
         </section>
-
         <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
@@ -225,7 +225,7 @@
         function toggle(element) {
             element.parentElement.classList.toggle('open');
         }
-        function toggleVideo(element) {
+        function toggleSub(element) {
             element.nextElementSibling.classList.toggle('show');
         }
     </script>
