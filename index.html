@@ -107,16 +107,14 @@
             width: 100%; height: 100%; border: none;
         }
 
-        /* ビデオの親要素：余白を解除して幅を最大化 */
-        .video-wrapper {
+        /* ビデオコンテナ：余白を維持した通常設定 */
+        .video-wrapper, .video-wrapper-inner {
             max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease-in-out;
-            /* 左右のパディングをなくし、画面幅を目一杯使う */
-            margin-left: calc(var(--side-padding) * -1);
-            width: calc(100% + (var(--side-padding) * 2));
+            padding-left: 10px;
         }
 
-        .video-wrapper.show {
+        .video-wrapper.show, .video-wrapper-inner.show {
             max-height: 1200px; margin-bottom: 15px;
         }
 
@@ -125,6 +123,7 @@
             padding-bottom: 56.25%; 
             height: 0;
             background: #000; 
+            margin: 12px 0;
         }
 
         .video-container iframe {
@@ -190,14 +189,14 @@
                 <span class="video-trigger" onclick="toggleSub(this)">90年間のあゆみ</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <!-- title, byline, portraitを0にし、colorを白に設定。dnt=1(追跡しない)を追加 -->
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <!-- コントロールあり、カラー白(ffffff) -->
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <span class="video-trigger" onclick="toggleSub(this)">世界的デザイナーとの共創</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -218,7 +217,7 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">PRICE LIST</h2>
             <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">プライスリスト</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">日本版プライスリスト</a>
             </div>
         </section>
 
@@ -226,23 +225,23 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">STORE</h2>
             <div class="content">
+                <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
-                <div class="video-wrapper-inline" style="padding-left: 10px;">
+                <div class="video-wrapper">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
+                    <div class="video-wrapper-inner">
                         <div class="shop-info">
                             東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
-                            TEL. 03-3400-3322<br>
                             営業時間：11:00-18:00 ＜予約制＞<br>
                             定休日：水曜・祝日<br>
                             <a href="tel:0334003322" style="color:inherit;text-decoration:none;">03-3400-3322</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
                         </div>
                         <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844!5m2!1sja!2sjp" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
-                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item-trigger" target="_blank">フロアツアー</a>
-                    <span class="video-trigger" onclick="toggleSub(this)">Architectural Story</span>
+                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
+                    <span class="video-trigger" onclick="toggleSub(this)">【ムービー】Palazzo Molteni Tokyoについて</span>
                     <div class="video-wrapper">
                         <div class="video-container">
                             <iframe src="https://player.vimeo.com/video/1107962629?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allowfullscreen></iframe>
@@ -250,10 +249,11 @@
                     </div>
                 </div>
                 
+                <!-- Osaka Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
-                <div class="video-wrapper-inline" style="padding-left: 10px;">
+                <div class="video-wrapper">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
+                    <div class="video-wrapper-inner">
                         <div class="shop-info">
                             大阪市中央区南船場4-2-11 4F<br>
                             営業時間：11:00〜18:00<br>
@@ -261,7 +261,7 @@
                             <a href="tel:0662588822" style="color:inherit;text-decoration:none;">06-6258-8822</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
                         </div>
                         <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.121309873061!2d135.497378276489!3d34.67688767292806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73f41caa96d%3A0xc34360e49674eaaa!2z44Oi44Or44OG44O844OL5aSn6ZiqIC8gTW9sdGVuaSZDIE9zYWthIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774333550076!5m2!1sja!2sjp" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.121309873061!2d135.497378276489!3d34.67688767292806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73f41caa96d%3A0xc34360e49674eaaa!2z44Oi44Or44OG44O844OL5aSn6ZiqIC8gTW9sdGVuaSZDIE9zYWthIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774333550076" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -300,9 +300,9 @@
         }
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
-            if (nextEl.classList.contains('video-wrapper') || nextEl.classList.contains('video-wrapper-inner')) {
+            if (nextEl) {
                 if (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') {
-                    nextEl.style.maxHeight = '1200px';
+                    nextEl.style.maxHeight = '1500px'; // コンテンツに応じて十分な高さを設定
                     nextEl.classList.add('show');
                 } else {
                     nextEl.style.maxHeight = '0px';
