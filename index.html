@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Molteni & C</title>
     <style>
-        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
@@ -13,7 +12,6 @@
             --text-color: #000000;
             --font-h2: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --font-default: "Zen Kaku Gothic New", "Helvetica Neue", Arial, sans-serif;
-            
             --side-padding: 30px;
             --h2-size: 21px;
             --h3-size: 15px;
@@ -66,16 +64,12 @@
             max-height: 5000px; opacity: 1; margin-top: 2px; margin-bottom: 12px;
         }
 
-        /* アーカイブ写真のスタイル */
         .archive-img {
-            width: 100%;
-            height: auto;
-            margin: 15px 0 20px 0;
-            display: block;
-            filter: grayscale(20%) contrast(1.1); /* わずかに彩度を落として馴染ませる */
+            width: 100%; height: auto;
+            margin: 15px 0 20px 0; display: block;
+            filter: grayscale(20%) contrast(1.1);
         }
 
-        /* 導入文のスタイル */
         .intro-text {
             font-size: var(--intro-size);
             line-height: 1.8;
@@ -86,7 +80,6 @@
             text-align: justify;
         }
 
-        /* サブカテゴリ見出し（太さを統一） */
         .video-trigger, .link-item-trigger {
             font-size: var(--h3-size); 
             font-weight: 400;
@@ -98,7 +91,6 @@
             color: var(--text-color);
         }
 
-        /* 詳細情報のスタイル */
         .shop-info {
             font-size: var(--info-size);
             line-height: 1.8;
@@ -106,12 +98,10 @@
             opacity: 0.8;
         }
 
-        /* Google Map Container */
         .map-container {
-            width: 100%;
-            height: 250px;
+            width: 100%; height: 250px;
             margin: 10px 0 20px 0;
-            filter: grayscale(100%) contrast(1.2) invert(5%); /* モノトーン化 */
+            filter: grayscale(100%) contrast(1.2) invert(5%);
         }
         .map-container iframe {
             width: 100%; height: 100%; border: none;
@@ -119,7 +109,7 @@
 
         .video-wrapper {
             max-height: 0; overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
+            transition: max-height 0.5s ease-in-out;
             padding-left: 10px;
         }
 
@@ -128,8 +118,11 @@
         }
 
         .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-            background: #d8d8d8; margin: 8px 0;
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0;
+            background: #000; 
+            margin: 12px 0;
         }
 
         .video-container iframe {
@@ -182,9 +175,7 @@
         <section>
             <h2 onclick="toggle(this)">IDENTITY</h2>
             <div class="content">
-                <!-- アーカイブ写真 -->
                 <img src="identity.jpg" alt="Molteni Founders" class="archive-img">
-                <!-- 導入文 -->
                 <div class="intro-text">
                     1934年の創業以来、私たちは数々の障害と多くの困難を乗り越えて、長い旅路を歩んできました。<br>
                     <br>
@@ -194,16 +185,17 @@
                     <br>
                     –カルロ・モルテーニ / モルテーニグループ 代表取締役社長
                 </div>
+                <!-- 修正後のVimeoパラメータ: title=0, byline=0, portrait=0, color=ffffff -->
                 <span class="video-trigger" onclick="toggleSub(this)">90年間のあゆみ</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <span class="video-trigger" onclick="toggleSub(this)">世界的デザイナーとの共創</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -232,10 +224,8 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">STORE</h2>
             <div class="content">
-                <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
                 <div class="video-wrapper">
-                    <!-- インフォメーション -->
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
                     <div class="video-wrapper">
                         <div class="shop-info">
@@ -245,44 +235,40 @@
                             定休日：水曜・祝日<br>
                             <a href="tel:0334003322" style="color:inherit;text-decoration:none;">03-3400-3322</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
                         </div>
-                        <!-- Google Map (最新情報に更新済み) -->
                         <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1711255000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
-                    <!-- フロアツアー -->
                     <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item-trigger" target="_blank">フロアツアー</a>
-                    <!-- Architectural Story -->
                     <span class="video-trigger" onclick="toggleSub(this)">Architectural Story</span>
                     <div class="video-wrapper">
                         <div class="video-container">
-                            <iframe src="https://player.vimeo.com/video/1107962629?autoplay=0&loop=1&muted=1&controls=1" allowfullscreen></iframe>
+                            <iframe src="https://player.vimeo.com/video/1107962629?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
-                <!-- Osaka Branch -->
-                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
+                
+                <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
                 <div class="video-wrapper">
-                    <!-- インフォメーション -->
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
                     <div class="video-wrapper">
                         <div class="shop-info">
                             大阪市中央区南船場4-2-11 4F<br>
-                            営業時間：11:00〜18:00
-                            定休日：水曜/祝日
+                            営業時間：11:00〜18:00<br>
+                            定休日：水曜/祝日<br>
                             <a href="tel:0662588822" style="color:inherit;text-decoration:none;">06-6258-8822</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
                         </div>
-                        <!-- Google Map (最新情報に更新済み) -->
                         <div class="map-container">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.121309873061!2d135.497378276489!3d34.67688767292806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73f41caa96d%3A0xc34360e49674eaaa!2z44Oi44Or44OG44O844OL5aSn6ZiqIC8gTW9sdGVuaSZDIE9zYWthIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774333550076!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
 
         <!-- STOCK -->
         <section class="gap-large">
-            <h2 onclick="toggle(this)">STOCK</h2>
+            <h2>STOCK</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTd9&detailFlg=0&pNo=1" class="link-item" target="_blank">新品在庫品</a>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjozNDg2NTh9&detailFlg=0&pNo=1" class="link-item" target="_blank">展示品（旧品）在庫</a>
@@ -298,7 +284,6 @@
             </div>
         </section>
 
-        <!-- Social -->
         <section class="small-links">
             <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
