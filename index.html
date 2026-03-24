@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Molteni & C</title>
     <style>
+        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
@@ -18,7 +19,7 @@
             --item-size: 15px;
             --info-size: 14px;
             --intro-size: 13px;
-            --small-size: 13px;
+            --small-size: 12px;
         }
 
         body {
@@ -73,7 +74,7 @@
         .intro-text {
             font-size: var(--intro-size);
             line-height: 1.8;
-            margin: 0 0 25px 0;
+            margin: 0 0 20px 0;
             padding-right: 10px;
             letter-spacing: 0.03em;
             opacity: 0.9;
@@ -107,7 +108,7 @@
             width: 100%; height: 100%; border: none;
         }
 
-        /* ビデオコンテナ：余白を維持した通常設定 */
+        /* ビデオ・詳細情報の開閉コンテナ */
         .video-wrapper, .video-wrapper-inner {
             max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease-in-out;
@@ -115,7 +116,7 @@
         }
 
         .video-wrapper.show, .video-wrapper-inner.show {
-            max-height: 1200px; margin-bottom: 15px;
+            max-height: 1500px; margin-bottom: 15px;
         }
 
         .video-container {
@@ -187,13 +188,11 @@
                     - カルロ・モルテーニ<br>
                     モルテーニグループ 代表取締役社長
                 </div>
-                 <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank">ブランドブック（仮）<a>
-                 </div>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom: 15px;">ブランドブック（仮）</a>
+                
                 <span class="video-trigger" onclick="toggleSub(this)">90年間のあゆみ</span>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <!-- コントロールあり、カラー白(ffffff) -->
                         <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
@@ -306,7 +305,7 @@
             const nextEl = element.nextElementSibling;
             if (nextEl) {
                 if (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') {
-                    nextEl.style.maxHeight = '1500px'; // コンテンツに応じて十分な高さを設定
+                    nextEl.style.maxHeight = '1500px'; 
                     nextEl.classList.add('show');
                 } else {
                     nextEl.style.maxHeight = '0px';
