@@ -99,6 +99,19 @@
             opacity: 0.8;
         }
 
+        /* 電話・メール用のアフォーダンス設計 */
+        .info-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 0.5px solid rgba(0,0,0,0.4); /* 細く薄い下線 */
+            padding-bottom: 1px;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .info-link:active {
+            border-bottom-color: rgba(0,0,0,1); /* タップ時に線を濃くする */
+        }
+
         .map-container {
             width: 100%; height: 250px;
             margin: 10px 0 20px 0;
@@ -122,7 +135,7 @@
             position: relative; 
             padding-bottom: 56.25%; 
             height: 0;
-            background: #d0d0d0; /* 読み込み前のプレースホルダー色 */
+            background: #d0d0d0; 
             margin: 12px 0;
         }
 
@@ -189,7 +202,6 @@
                 </div>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（仮）ブランドブック</a>
                 
-                <!-- ビデオ: data-vimeo-id でIDを指定 -->
                 <span class="video-trigger" onclick="toggleVideo(this, '1107963555')">【ムービー】ブランドの歴史</span>
                 <div class="video-wrapper">
                     <div class="video-container"></div>
@@ -212,7 +224,7 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">PRICE LIST</h2>
             <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">国内プライスリスト</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">日本版プライスリスト</a>
             </div>
         </section>
 
@@ -229,7 +241,7 @@
                             東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
                             営業時間：11:00-18:00 ＜予約制＞<br>
                             定休日：水曜/祝日<br>
-                            <a href="tel:0334003322" style="color:inherit;text-decoration:none;">03-3400-3322</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
+                            <a href="tel:0334003322" class="info-link">03-3400-3322</a> | <a href="mailto:info@molteni.jp" class="info-link">info@molteni.jp</a>
                         </div>
                         <div class="map-container">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844" allowfullscreen="" loading="lazy"></iframe>
@@ -251,7 +263,7 @@
                             大阪市中央区南船場4丁目-2-11 4F<br>
                             営業時間：11:00-18:00<br>
                             定休日：水曜/祝日<br>
-                            <a href="tel:0662588822" style="color:inherit;text-decoration:none;">06-6258-8822</a> | <a href="mailto:info@molteni.jp" style="color:inherit;text-decoration:none;">info@molteni.jp</a>
+                            <a href="tel:0662588822" class="info-link">06-6258-8822</a> | <a href="mailto:info@molteni.jp" class="info-link">info@molteni.jp</a>
                         </div>
                         <div class="map-container">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.121309873061!2d135.497378276489!3d34.67688767292806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73f41caa96d%3A0xc34360e49674eaaa!2z44Oi44Or44OG44O844OL5aSn6ZiqIC8gTW9sdGVuaSZDIE9zYWthIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774333550076" allowfullscreen="" loading="lazy"></iframe>
@@ -289,12 +301,9 @@
     </div>
 
     <script>
-        // H2カテゴリの開閉
         function toggle(element) {
             element.parentElement.classList.toggle('open');
         }
-
-        // H3サブカテゴリの開閉
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
@@ -307,19 +316,12 @@
                 }
             }
         }
-
-        // ビデオの遅延読み込みと再生（新機能）
         function toggleVideo(element, vimeoId) {
             const wrapper = element.nextElementSibling;
             const container = wrapper.querySelector('.video-container');
-
-            // すでに読み込まれているかチェック
             if (!container.innerHTML.trim()) {
-                // 初回タップ時にiframeを生成して挿入
                 container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
             }
-
-            // 開閉処理
             if (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') {
                 wrapper.style.maxHeight = '1500px';
                 wrapper.classList.add('show');
