@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- faviconの設定 -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <title>Molteni & C</title>
     <style>
+        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
@@ -31,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* --- イントロ演出：埋め尽くし・高速スタック --- */
+        /* --- イントロ演出：15枚埋め尽くし（JPG版） --- */
         #intro-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -47,10 +51,10 @@
             opacity: 0;
             object-fit: cover;
             pointer-events: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 重なりの影 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* 15枚の配置とタイミング：画面全体をカバー */
+        /* 15枚の配置 */
         .img1  { width: 80%; top: -5%; left: -10%; animation: swarmAct 1.8s ease-in-out 0.1s; }
         .img2  { width: 70%; bottom: -5%; right: -5%; animation: swarmAct 1.8s ease-in-out 0.3s; }
         .img3  { width: 75%; top: 20%; right: -15%; animation: swarmAct 1.8s ease-in-out 0.5s; }
@@ -68,7 +72,7 @@
         .img15 { width: 95%; top: 15%; left: 2%; animation: swarmAct 2.2s ease-in-out 2.9s; }
 
         @keyframes swarmAct {
-            0% { opacity: 0; transform: scale(1.1) rotate(2deg); filter: blur(15px); }
+            0% { opacity: 0; transform: scale(1.1) rotate(1deg); filter: blur(15px); }
             30% { opacity: 1; filter: blur(0); }
             85% { opacity: 1; }
             100% { opacity: 0; transform: scale(1) rotate(0deg); }
@@ -78,64 +82,153 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
             z-index: 10000;
+            text-align: center;
+            width: 150px;
         }
 
-        .intro-logo {
-            font-family: var(--font-h2);
-            font-size: 26px;
-            letter-spacing: 0.2em;
-            opacity: 0;
+        .intro-logo-img {
+            width: 100%; height: auto; opacity: 0;
             animation: logoFade 2.5s ease-in-out 3.5s forwards;
         }
 
         @keyframes logoFade {
-            0% { opacity: 0; filter: blur(10px); }
-            100% { opacity: 1; filter: blur(0); }
+            0% { opacity: 0; filter: blur(10px); transform: scale(0.95); }
+            100% { opacity: 1; filter: blur(0); transform: scale(1); }
         }
-
-        .tap-to-enter {
-            margin-top: 20px;
-            font-size: 9px;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: hintFade 1.5s ease-in-out 5s infinite alternate;
-        }
-
-        @keyframes hintFade { 0% { opacity: 0.1; } 100% { opacity: 0.6; } }
 
         #intro-overlay.fade-out { opacity: 0; visibility: hidden; }
 
         /* --- メインコンテンツ --- */
-        .wrapper { padding: 40px var(--side-padding); max-width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
-        .brand-logo-img { width: 150px; height: auto; margin-bottom: 25px; display: block; }
+        .wrapper {
+            padding: 40px var(--side-padding);
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .brand-logo-img {
+            width: 150px; height: auto;
+            margin-bottom: 25px; display: block;
+        }
+
         section { width: 100%; margin-bottom: 3px; }
-        h2 { font-family: var(--font-h2); font-size: var(--h2-size); font-weight: 400; margin: 0; cursor: pointer; padding: 2px 0; display: inline-block; text-transform: uppercase; }
-        .content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, opacity 0.3s; opacity: 0; padding-left: 5px; }
-        section.open > .content { max-height: 5000px; opacity: 1; margin-top: 2px; margin-bottom: 12px; }
-        .archive-img { width: 100%; height: auto; margin: 15px 0 20px 0; display: block; filter: grayscale(20%) contrast(1.1); }
-        .intro-text { font-size: var(--intro-size); line-height: 1.8; margin: 0 0 20px 0; padding-right: 10px; letter-spacing: 0.03em; opacity: 0.9; text-align: justify; }
-        .video-trigger, .link-item-trigger { font-size: var(--h3-size); font-weight: 400; margin: 8px 0 4px 0; cursor: pointer; display: block; opacity: 1; text-decoration: none; color: var(--text-color); }
-        .shop-info { font-size: var(--info-size); line-height: 1.8; margin: 8px 0 12px 0; opacity: 0.8; }
-        .info-link { color: inherit; text-decoration: none; border-bottom: 0.5px solid rgba(0,0,0,0.4); padding-bottom: 1px; }
-        .map-container { width: 100%; height: 250px; margin: 10px 0 20px 0; filter: grayscale(100%) contrast(1.2) invert(5%); }
-        .map-container iframe { width: 100%; height: 100%; border: none; }
-        .video-wrapper, .video-wrapper-inner { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 10px; }
-        .video-wrapper.show, .video-wrapper-inner.show { max-height: 1500px; margin-bottom: 15px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #d0d0d0; margin: 12px 0; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .link-item { text-decoration: none; color: var(--text-color); font-size: var(--item-size); padding: 5px 0; display: block; opacity: 1; }
+
+        h2 {
+            font-family: var(--font-h2);
+            font-size: var(--h2-size); font-weight: 400;
+            margin: 0; cursor: pointer; padding: 2px 0;
+            display: inline-block;
+            text-transform: uppercase; 
+        }
+
+        .content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s;
+            opacity: 0;
+            padding-left: 5px; 
+        }
+
+        section.open > .content {
+            max-height: 5000px; opacity: 1; margin-top: 2px; margin-bottom: 12px;
+        }
+
+        .archive-img {
+            width: 100%; height: auto;
+            margin: 15px 0 20px 0; display: block;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .intro-text {
+            font-size: var(--intro-size);
+            line-height: 1.8;
+            margin: 0 0 20px 0;
+            padding-right: 10px;
+            letter-spacing: 0.03em;
+            opacity: 0.9;
+            text-align: justify;
+        }
+
+        .video-trigger, .link-item-trigger {
+            font-size: var(--h3-size); 
+            font-weight: 400;
+            margin: 8px 0 4px 0; 
+            cursor: pointer;
+            display: block; 
+            opacity: 1;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .shop-info {
+            font-size: var(--info-size);
+            line-height: 1.8;
+            margin: 8px 0 12px 0;
+            opacity: 0.8;
+        }
+
+        .info-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 0.5px solid rgba(0,0,0,0.4);
+            padding-bottom: 1px;
+        }
+
+        .map-container {
+            width: 100%; height: 250px;
+            margin: 10px 0 20px 0;
+            filter: grayscale(100%) contrast(1.2) invert(5%);
+        }
+        .map-container iframe {
+            width: 100%; height: 100%; border: none;
+        }
+
+        .video-wrapper, .video-wrapper-inner {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            padding-left: 10px;
+        }
+
+        .video-wrapper.show, .video-wrapper-inner.show {
+            max-height: 2000px; margin-bottom: 15px;
+        }
+
+        .video-container {
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0;
+            background: #d0d0d0; 
+            margin: 12px 0;
+        }
+
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
+        .link-item {
+            text-decoration: none; color: var(--text-color);
+            font-size: var(--item-size); padding: 5px 0;
+            display: block; opacity: 1;
+        }
+
         .gap-large { margin-bottom: 25px; }
+
         .small-links { margin-top: 15px; }
-        .small-links .link-item { font-size: var(--small-size); padding: 2px 0; letter-spacing: 0.05em; }
-        .footer { margin-top: 50px; font-size: 8px; opacity: 0.4; letter-spacing: 0.1em; }
+        .small-links .link-item {
+            font-size: var(--small-size); padding: 2px 0;
+            letter-spacing: 0.05em;
+        }
+
+        .footer {
+            margin-top: 50px; font-size: 8px;
+            opacity: 0.4; letter-spacing: 0.1em;
+        }
     </style>
 </head>
 <body>
 
-    <!-- イントロ演出：15枚の画像 -->
+    <!-- イントロ演出 -->
     <div id="intro-overlay" onclick="enterSite()">
         <img src="swarm1.jpg" class="swarm-img img1">
         <img src="swarm2.jpg" class="swarm-img img2">
@@ -154,12 +247,11 @@
         <img src="swarm15.jpg" class="swarm-img img15">
 
         <div class="intro-logo-box">
-            <div class="intro-logo">Molteni&C</div>
-            <div class="tap-to-enter">Tap to enter</div>
+            <img src="logo.png" alt="Molteni&C" class="intro-logo-img">
         </div>
     </div>
 
-    <!-- メインコンテンツ -->
+    <!-- メインハブ -->
     <div class="wrapper">
         <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
@@ -172,7 +264,7 @@
             </div>
         </section>
 
-        <!-- Identity -->
+        <!-- IDENTITY -->
         <section>
             <h2 onclick="toggle(this)">IDENTITY</h2>
             <div class="content">
@@ -183,13 +275,13 @@
                     - カルロ・モルテーニ
                 </div>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（ブランドブック）</a>
+                
                 <span class="video-trigger" onclick="toggleVideo(this, '1107963555')">【ムービー】ブランドの歴史</span>
                 <div class="video-wrapper"><div class="video-container"></div></div>
             </div>
         </section>
 
-        <!-- 以下、Catalogue, Store, Stock, Contact等のセクションが続きます -->
-　　　　  <!-- CATALOGUE -->
+        <!-- CATALOGUE -->
         <section>
             <h2 onclick="toggle(this)">CATALOGUE</h2>
             <div class="content">
@@ -204,7 +296,7 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">PRICE LIST</h2>
             <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">日本版プライスリスト</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">国内プライスリスト</a>
             </div>
         </section>
 
@@ -212,11 +304,11 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">STORE</h2>
             <div class="content">
-                <!-- Tokyo Branch -->
+                <!-- Tokyo -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inner" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
                             営業時間：11:00-18:00 ＜予約制＞<br>
@@ -227,18 +319,16 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
-                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
+                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item-trigger" target="_blank">フロアツアー</a>
                     <span class="video-trigger" onclick="toggleVideo(this, '1107962629')">【ムービー】Palazzo Molteni Tokyoについて</span>
-                    <div class="video-wrapper">
-                        <div class="video-container"></div>
-                    </div>
+                    <div class="video-wrapper"><div class="video-container"></div></div>
                 </div>
                 
-                <!-- Osaka Branch -->
+                <!-- Osaka -->
                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inner" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             大阪市中央区南船場4丁目-2-11 4F<br>
                             営業時間：11:00-18:00<br>
@@ -276,7 +366,7 @@
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
             <a href="https://jp.pinterest.com/molteniandc/" class="link-item" target="_blank">Pinterest</a>
         </section>
-        
+
         <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
@@ -285,7 +375,8 @@
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
-                nextEl.style.maxHeight = (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') ? '1500px' : '0px';
+                const isOpen = nextEl.style.maxHeight === '2000px';
+                nextEl.style.maxHeight = isOpen ? '0px' : '2000px';
                 nextEl.classList.toggle('show');
             }
         }
@@ -295,7 +386,8 @@
             if (!container.innerHTML.trim()) {
                 container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
             }
-            wrapper.style.maxHeight = (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') ? '1500px' : '0px';
+            const isOpen = wrapper.style.maxHeight === '1500px';
+            wrapper.style.maxHeight = isOpen ? '0px' : '1500px';
             wrapper.classList.toggle('show');
         }
         function enterSite() {
