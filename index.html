@@ -3,13 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-     <!-- faviconの設定 -->
-    <link rel="icon" href="favicon.png" type="image/png">
-    <!-- スマホで「ホーム画面に追加」した時のアイコン -->
-    <link rel="apple-touch-icon" href="favicon.png">
-    <title>Molteni&C</title>
+    <title>Molteni & C</title>
     <style>
-        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
 
         :root {
@@ -33,142 +28,138 @@
             font-family: var(--font-default);
             -webkit-tap-highlight-color: transparent;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        .wrapper {
-            padding: 40px var(--side-padding);
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .brand-logo-img {
-            width: 150px; height: auto;
-            margin-bottom: 25px; display: block;
-        }
-
-        section { width: 100%; margin-bottom: 3px; }
-
-        h2 {
-            font-family: var(--font-h2);
-            font-size: var(--h2-size); font-weight: 400;
-            margin: 0; cursor: pointer; padding: 2px 0;
-            display: inline-block;
-            text-transform: uppercase; 
-        }
-
-        .content {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.3s ease-out, opacity 0.3s;
-            opacity: 0;
-            padding-left: 5px; 
-        }
-
-        section.open > .content {
-            max-height: 5000px; opacity: 1; margin-top: 2px; margin-bottom: 12px;
-        }
-
-        .archive-img {
-            width: 100%; height: auto;
-            margin: 15px 0 20px 0; display: block;
-            filter: grayscale(20%) contrast(1.1);
-        }
-
-        .intro-text {
-            font-size: var(--intro-size);
-            line-height: 1.8;
-            margin: 0 0 20px 0;
-            padding-right: 10px;
-            letter-spacing: 0.03em;
-            opacity: 0.9;
-            text-align: justify;
-        }
-
-        .video-trigger, .link-item-trigger {
-            font-size: var(--h3-size); 
-            font-weight: 400;
-            margin: 8px 0 4px 0; 
+        /* --- イントロ演出：埋め尽くし・高速スタック --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #FFFFFF;
+            z-index: 9999;
             cursor: pointer;
-            display: block; 
-            opacity: 1;
-            text-decoration: none;
-            color: var(--text-color);
+            overflow: hidden;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s;
         }
 
-        .shop-info {
-            font-size: var(--info-size);
-            line-height: 1.8;
-            margin: 8px 0 12px 0;
-            opacity: 0.8;
+        .swarm-img {
+            position: absolute;
+            opacity: 0;
+            object-fit: cover;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 重なりの影 */
         }
 
-        /* 電話・メール用のアフォーダンス設計 */
-        .info-link {
-            color: inherit;
-            text-decoration: none;
-            border-bottom: 0.5px solid rgba(0,0,0,0.4); /* 細く薄い下線 */
-            padding-bottom: 1px;
-            transition: border-bottom-color 0.3s;
+        /* 15枚の配置とタイミング：画面全体をカバー */
+        .img1  { width: 80%; top: -5%; left: -10%; animation: swarmAct 1.8s ease-in-out 0.1s; }
+        .img2  { width: 70%; bottom: -5%; right: -5%; animation: swarmAct 1.8s ease-in-out 0.3s; }
+        .img3  { width: 75%; top: 20%; right: -15%; animation: swarmAct 1.8s ease-in-out 0.5s; }
+        .img4  { width: 85%; bottom: 15%; left: -10%; animation: swarmAct 1.8s ease-in-out 0.7s; }
+        .img5  { width: 60%; top: 10%; right: 10%; animation: swarmAct 1.8s ease-in-out 0.9s; }
+        .img6  { width: 90%; top: 40%; left: 5%; animation: swarmAct 1.8s ease-in-out 1.1s; }
+        .img7  { width: 65%; bottom: 30%; right: 0%; animation: swarmAct 1.8s ease-in-out 1.3s; }
+        .img8  { width: 80%; top: -10%; right: 5%; animation: swarmAct 1.8s ease-in-out 1.5s; }
+        .img9  { width: 75%; bottom: -10%; left: 20%; animation: swarmAct 1.8s ease-in-out 1.7s; }
+        .img10 { width: 70%; top: 25%; left: -5%; animation: swarmAct 1.8s ease-in-out 1.9s; }
+        .img11 { width: 85%; bottom: 0%; right: -10%; animation: swarmAct 1.8s ease-in-out 2.1s; }
+        .img12 { width: 60%; top: 50%; right: -5%; animation: swarmAct 1.8s ease-in-out 2.3s; }
+        .img13 { width: 80%; top: 0%; left: 10%; animation: swarmAct 1.8s ease-in-out 2.5s; }
+        .img14 { width: 70%; bottom: 20%; right: 15%; animation: swarmAct 1.8s ease-in-out 2.7s; }
+        .img15 { width: 95%; top: 15%; left: 2%; animation: swarmAct 2.2s ease-in-out 2.9s; }
+
+        @keyframes swarmAct {
+            0% { opacity: 0; transform: scale(1.1) rotate(2deg); filter: blur(15px); }
+            30% { opacity: 1; filter: blur(0); }
+            85% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1) rotate(0deg); }
         }
 
-        .info-link:active {
-            border-bottom-color: rgba(0,0,0,1); /* タップ時に線を濃くする */
+        .intro-logo-box {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10000;
         }
 
-        .map-container {
-            width: 100%; height: 250px;
-            margin: 10px 0 20px 0;
-            filter: grayscale(100%) contrast(1.2) invert(5%);
-        }
-        .map-container iframe {
-            width: 100%; height: 100%; border: none;
-        }
-
-        .video-wrapper, .video-wrapper-inner {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-            padding-left: 10px;
+        .intro-logo {
+            font-family: var(--font-h2);
+            font-size: 26px;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            animation: logoFade 2.5s ease-in-out 3.5s forwards;
         }
 
-        .video-wrapper.show, .video-wrapper-inner.show {
-            max-height: 1500px; margin-bottom: 15px;
+        @keyframes logoFade {
+            0% { opacity: 0; filter: blur(10px); }
+            100% { opacity: 1; filter: blur(0); }
         }
 
-        .video-container {
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0;
-            background: #d0d0d0; 
-            margin: 12px 0;
+        .tap-to-enter {
+            margin-top: 20px;
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: hintFade 1.5s ease-in-out 5s infinite alternate;
         }
 
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
-        }
+        @keyframes hintFade { 0% { opacity: 0.1; } 100% { opacity: 0.6; } }
 
-        .link-item {
-            text-decoration: none; color: var(--text-color);
-            font-size: var(--item-size); padding: 5px 0;
-            display: block; opacity: 1;
-        }
+        #intro-overlay.fade-out { opacity: 0; visibility: hidden; }
 
+        /* --- メインコンテンツ --- */
+        .wrapper { padding: 40px var(--side-padding); max-width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
+        .brand-logo-img { width: 150px; height: auto; margin-bottom: 25px; display: block; }
+        section { width: 100%; margin-bottom: 3px; }
+        h2 { font-family: var(--font-h2); font-size: var(--h2-size); font-weight: 400; margin: 0; cursor: pointer; padding: 2px 0; display: inline-block; text-transform: uppercase; }
+        .content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, opacity 0.3s; opacity: 0; padding-left: 5px; }
+        section.open > .content { max-height: 5000px; opacity: 1; margin-top: 2px; margin-bottom: 12px; }
+        .archive-img { width: 100%; height: auto; margin: 15px 0 20px 0; display: block; filter: grayscale(20%) contrast(1.1); }
+        .intro-text { font-size: var(--intro-size); line-height: 1.8; margin: 0 0 20px 0; padding-right: 10px; letter-spacing: 0.03em; opacity: 0.9; text-align: justify; }
+        .video-trigger, .link-item-trigger { font-size: var(--h3-size); font-weight: 400; margin: 8px 0 4px 0; cursor: pointer; display: block; opacity: 1; text-decoration: none; color: var(--text-color); }
+        .shop-info { font-size: var(--info-size); line-height: 1.8; margin: 8px 0 12px 0; opacity: 0.8; }
+        .info-link { color: inherit; text-decoration: none; border-bottom: 0.5px solid rgba(0,0,0,0.4); padding-bottom: 1px; }
+        .map-container { width: 100%; height: 250px; margin: 10px 0 20px 0; filter: grayscale(100%) contrast(1.2) invert(5%); }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+        .video-wrapper, .video-wrapper-inner { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 10px; }
+        .video-wrapper.show, .video-wrapper-inner.show { max-height: 1500px; margin-bottom: 15px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #d0d0d0; margin: 12px 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .link-item { text-decoration: none; color: var(--text-color); font-size: var(--item-size); padding: 5px 0; display: block; opacity: 1; }
         .gap-large { margin-bottom: 25px; }
-
         .small-links { margin-top: 15px; }
-        .small-links .link-item {
-            font-size: var(--small-size); padding: 2px 0;
-            letter-spacing: 0.05em;
-        }
-
-        .footer {
-            margin-top: 50px; font-size: 8px;
-            opacity: 0.4; letter-spacing: 0.1em;
-        }
+        .small-links .link-item { font-size: var(--small-size); padding: 2px 0; letter-spacing: 0.05em; }
+        .footer { margin-top: 50px; font-size: 8px; opacity: 0.4; letter-spacing: 0.1em; }
     </style>
 </head>
 <body>
 
+    <!-- イントロ演出：15枚の画像 -->
+    <div id="intro-overlay" onclick="enterSite()">
+        <img src="swarm1.jpg" class="swarm-img img1">
+        <img src="swarm2.jpg" class="swarm-img img2">
+        <img src="swarm3.jpg" class="swarm-img img3">
+        <img src="swarm4.jpg" class="swarm-img img4">
+        <img src="swarm5.jpg" class="swarm-img img5">
+        <img src="swarm6.jpg" class="swarm-img img6">
+        <img src="swarm7.jpg" class="swarm-img img7">
+        <img src="swarm8.jpg" class="swarm-img img8">
+        <img src="swarm9.jpg" class="swarm-img img9">
+        <img src="swarm10.jpg" class="swarm-img img10">
+        <img src="swarm11.jpg" class="swarm-img img11">
+        <img src="swarm12.jpg" class="swarm-img img12">
+        <img src="swarm13.jpg" class="swarm-img img13">
+        <img src="swarm14.jpg" class="swarm-img img14">
+        <img src="swarm15.jpg" class="swarm-img img15">
+
+        <div class="intro-logo-box">
+            <div class="intro-logo">Molteni&C</div>
+            <div class="tap-to-enter">Tap to enter</div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
     <div class="wrapper">
         <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
@@ -181,39 +172,24 @@
             </div>
         </section>
 
-        <!-- NEWS -->
-        <section class="gap-large">
-            <h2 onclick="toggle(this)">NEWS</h2>
-            <div class="content">
-                <span class="link-item" style="opacity: 0.4;">Coming soon</span>
-            </div>
-        </section>
-
-        <!-- IDENTITY -->
+        <!-- Identity -->
         <section>
             <h2 onclick="toggle(this)">IDENTITY</h2>
             <div class="content">
                 <img src="identity.jpg" alt="Molteni Founders" class="archive-img">
                 <div class="intro-text">
-                    1934年の創業以来、私たちは数々の障害と多くの困難を乗り越えて、長い旅路を歩んできました。<br>
-                    <br>
-                    そして、これで十分だという感覚は決してありません。知識の獲得はもはや通過点に過ぎません。<br>
-                    <br>
-                    日々、私たちは細部に至るまで、卓越した品質への飽くなきこだわりを持ち続けているのです。<br>
-                    <br>
-                    - カルロ・モルテーニ<br>
-                    モルテーニグループ 代表取締役社長
+                    1934年の創業以来、私たちは数々の障害と多くの困難を乗り越えて、長い旅路を歩んできました。<br><br>
+                    日々、私たちは細部に至るまで、卓越した品質への飽くなきこだわりを持ち続けているのです。<br><br>
+                    - カルロ・モルテーニ
                 </div>
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（仮）ブランドブック</a>
-                
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（ブランドブック）</a>
                 <span class="video-trigger" onclick="toggleVideo(this, '1107963555')">【ムービー】ブランドの歴史</span>
-                <div class="video-wrapper">
-                    <div class="video-container"></div>
-                </div>
+                <div class="video-wrapper"><div class="video-container"></div></div>
             </div>
         </section>
-        
-        <!-- CATALOGUE -->
+
+        <!-- 以下、Catalogue, Store, Stock, Contact等のセクションが続きます -->
+　　　　  <!-- CATALOGUE -->
         <section>
             <h2 onclick="toggle(this)">CATALOGUE</h2>
             <div class="content">
@@ -300,24 +276,17 @@
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
             <a href="https://jp.pinterest.com/molteniandc/" class="link-item" target="_blank">Pinterest</a>
         </section>
-
+        
         <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
     <script>
-        function toggle(element) {
-            element.parentElement.classList.toggle('open');
-        }
+        function toggle(element) { element.parentElement.classList.toggle('open'); }
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
-                if (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') {
-                    nextEl.style.maxHeight = '2000px'; 
-                    nextEl.classList.add('show');
-                } else {
-                    nextEl.style.maxHeight = '0px';
-                    nextEl.classList.remove('show');
-                }
+                nextEl.style.maxHeight = (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') ? '1500px' : '0px';
+                nextEl.classList.toggle('show');
             }
         }
         function toggleVideo(element, vimeoId) {
@@ -326,13 +295,13 @@
             if (!container.innerHTML.trim()) {
                 container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
             }
-            if (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') {
-                wrapper.style.maxHeight = '1500px';
-                wrapper.classList.add('show');
-            } else {
-                wrapper.style.maxHeight = '0px';
-                wrapper.classList.remove('show');
-            }
+            wrapper.style.maxHeight = (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') ? '1500px' : '0px';
+            wrapper.classList.toggle('show');
+        }
+        function enterSite() {
+            const overlay = document.getElementById('intro-overlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => { overlay.style.display = 'none'; }, 1200);
         }
     </script>
 </body>
