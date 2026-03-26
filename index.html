@@ -19,7 +19,7 @@
             --item-size: 15px;
             --info-size: 14px;
             --intro-size: 13px;
-            --small-size: 12px;
+            --small-size: 13px;
         }
 
         body {
@@ -108,7 +108,6 @@
             width: 100%; height: 100%; border: none;
         }
 
-        /* ビデオ・詳細情報の開閉コンテナ */
         .video-wrapper, .video-wrapper-inner {
             max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease-in-out;
@@ -123,7 +122,7 @@
             position: relative; 
             padding-bottom: 56.25%; 
             height: 0;
-            background: #000; 
+            background: #d0d0d0; /* 読み込み前のプレースホルダー色 */
             margin: 12px 0;
         }
 
@@ -188,12 +187,12 @@
                     - カルロ・モルテーニ<br>
                     モルテーニグループ 代表取締役社長
                 </div>
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank">モルテーニについて（仮）ブランドブック</a>
-                <span class="video-trigger" onclick="toggleSub(this)">【ムービー】ブランドの歴史</span>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（仮）ブランドブック</a>
+                
+                <!-- ビデオ: data-vimeo-id でIDを指定 -->
+                <span class="video-trigger" onclick="toggleVideo(this, '1107963555')">【ムービー】ブランドの歴史</span>
                 <div class="video-wrapper">
-                    <div class="video-container">
-                        <iframe src="https://player.vimeo.com/video/1107963555?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                    <div class="video-container"></div>
                 </div>
             </div>
         </section>
@@ -203,7 +202,7 @@
             <h2 onclick="toggle(this)">CATALOGUE</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjB9&detailFlg=0&pNo=1" class="link-item" target="_blank">Molteni&C 製品カタログ</a>
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjF9&detailFlg=0&pNo=1" class="link-item" target="_blank">ジオ・ポンティ ヘリテージコレクション</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo1MTczNjF9&detailFlg=1&pNo=1" class="link-item" target="_blank">ジオ・ポンティ ヘリテージコレクション</a>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank">ホーム カタログ 英語版</a>
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MTZ9&detailFlg=0&pNo=1" class="link-item" target="_blank">キッチン カタログ 英語版</a>
             </div>
@@ -223,7 +222,7 @@
             <div class="content">
                 <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
-                <div class="video-wrapper">
+                <div class="video-wrapper-inner">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
                     <div class="video-wrapper-inner">
                         <div class="shop-info">
@@ -237,17 +236,15 @@
                         </div>
                     </div>
                     <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
-                    <span class="video-trigger" onclick="toggleSub(this)">【ムービー】Palazzo Molteni Tokyoについて</span>
+                    <span class="video-trigger" onclick="toggleVideo(this, '1107962629')">【ムービー】Palazzo Molteni Tokyoについて</span>
                     <div class="video-wrapper">
-                        <div class="video-container">
-                            <iframe src="https://player.vimeo.com/video/1107962629?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&color=ffffff" allowfullscreen></iframe>
-                        </div>
+                        <div class="video-container"></div>
                     </div>
                 </div>
                 
                 <!-- Osaka Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
-                <div class="video-wrapper">
+                <div class="video-wrapper-inner">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
                     <div class="video-wrapper-inner">
                         <div class="shop-info">
@@ -292,19 +289,43 @@
     </div>
 
     <script>
+        // H2カテゴリの開閉
         function toggle(element) {
             element.parentElement.classList.toggle('open');
         }
+
+        // H3サブカテゴリの開閉
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
                 if (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') {
-                    nextEl.style.maxHeight = '1500px'; 
+                    nextEl.style.maxHeight = '2000px'; 
                     nextEl.classList.add('show');
                 } else {
                     nextEl.style.maxHeight = '0px';
                     nextEl.classList.remove('show');
                 }
+            }
+        }
+
+        // ビデオの遅延読み込みと再生（新機能）
+        function toggleVideo(element, vimeoId) {
+            const wrapper = element.nextElementSibling;
+            const container = wrapper.querySelector('.video-container');
+
+            // すでに読み込まれているかチェック
+            if (!container.innerHTML.trim()) {
+                // 初回タップ時にiframeを生成して挿入
+                container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+            }
+
+            // 開閉処理
+            if (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') {
+                wrapper.style.maxHeight = '1500px';
+                wrapper.classList.add('show');
+            } else {
+                wrapper.style.maxHeight = '0px';
+                wrapper.classList.remove('show');
             }
         }
     </script>
