@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-     <!-- faviconの設定 -->
+    <!-- faviconの設定 -->
     <link rel="icon" href="favicon.png" type="image/png">
-    <!-- スマホで「ホーム画面に追加」した時のアイコン -->
     <link rel="apple-touch-icon" href="favicon.png">
     <title>Molteni&C</title>
     <style>
@@ -24,6 +23,7 @@
             --info-size: 14px;
             --intro-size: 13px;
             --small-size: 13px;
+            --category-label-size: 10px;
         }
 
         body {
@@ -96,6 +96,15 @@
             color: var(--text-color);
         }
 
+        .category-label {
+            font-size: var(--category-label-size);
+            opacity: 0.4;
+            letter-spacing: 0.1em;
+            margin: 15px 0 5px 0;
+            display: block;
+            text-transform: uppercase;
+        }
+
         .shop-info {
             font-size: var(--info-size);
             line-height: 1.8;
@@ -103,17 +112,12 @@
             opacity: 0.8;
         }
 
-        /* 電話・メール用のアフォーダンス設計 */
         .info-link {
             color: inherit;
             text-decoration: none;
-            border-bottom: 0.5px solid rgba(0,0,0,0.4); /* 細く薄い下線 */
+            border-bottom: 0.5px solid rgba(0,0,0,0.4); 
             padding-bottom: 1px;
             transition: border-bottom-color 0.3s;
-        }
-
-        .info-link:active {
-            border-bottom-color: rgba(0,0,0,1); /* タップ時に線を濃くする */
         }
 
         .map-container {
@@ -132,7 +136,7 @@
         }
 
         .video-wrapper.show, .video-wrapper-inner.show {
-            max-height: 1500px; margin-bottom: 15px;
+            max-height: 3000px; margin-bottom: 15px;
         }
 
         .video-container {
@@ -149,7 +153,7 @@
 
         .link-item {
             text-decoration: none; color: var(--text-color);
-            font-size: var(--item-size); padding: 5px 0;
+            font-size: var(--item-size); padding: 4px 0;
             display: block; opacity: 1;
         }
 
@@ -193,11 +197,9 @@
         <section>
             <h2 onclick="toggle(this)">IDENTITY</h2>
             <div class="content">
-                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（仮）ブランドブック</a>
+                <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MTM5MDh9&detailFlg=0&pNo=1" class="link-item" target="_blank" style="margin-bottom:10px;">モルテーニについて（ブランドブック）</a>
                 <span class="video-trigger" onclick="toggleVideo(this, '1107963555')">【ムービー】ブランドの歴史</span>
-                <div class="video-wrapper">
-                    <div class="video-container"></div>
-                </div>
+                <div class="video-wrapper"><div class="video-container"></div></div>
             </div>
         </section>
         
@@ -217,6 +219,52 @@
             <h2 onclick="toggle(this)">PRICE LIST</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">日本版プライスリスト</a>
+                
+                <!-- 新製品プライス アコーディオン -->
+                <span class="video-trigger" onclick="toggleSub(this)">新製品プライスリスト 2026</span>
+                <div class="video-wrapper-inner">
+                    
+                    <span class="category-label">[ Sofa ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Emile.pdf" class="link-item" target="_blank">EMILE</a>
+
+                    <span class="category-label">[ Armchair ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lia.pdf" class="link-item" target="_blank">LIA</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Linea.pdf" class="link-item" target="_blank">LINEA</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Eugene.pdf" class="link-item" target="_blank">EUGÈNE</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk.pdf" class="link-item" target="_blank">MONK</a>
+
+                    <span class="category-label">[ Chair ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk_CH.pdf" class="link-item" target="_blank">MONK</a>
+
+                    <span class="category-label">[ Coffee Table ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Odile.pdf" class="link-item" target="_blank">ODILE</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lea.pdf" class="link-item" target="_blank">LÈA</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Maylis.pdf" class="link-item" target="_blank">MAYLIS</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Fleur.pdf" class="link-item" target="_blank">FLEUR</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Fonte.pdf" class="link-item" target="_blank">FONTE</a>
+
+                    <span class="category-label">[ Dining Table ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lise.pdf" class="link-item" target="_blank">LISE</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Penelope.pdf" class="link-item" target="_blank">PÉNÉLOPE</a>
+
+                    <span class="category-label">[ Desk ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Aria.pdf" class="link-item" target="_blank">ARIA</a>
+
+                    <span class="category-label">[ Sideboard ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Andromeda.pdf" class="link-item" target="_blank">ANDROMEDA</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Card.pdf" class="link-item" target="_blank">CARD</a>
+
+                    <span class="category-label">[ Bed ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Tibeau_Bed.pdf" class="link-item" target="_blank">TIBEAU</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Theo_Bed.pdf" class="link-item" target="_blank">THEO</a>
+
+                    <span class="category-label">[ Cabinet ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Livingbox.pdf" class="link-item" target="_blank">LIVING BOX</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Glissmaster.pdf" class="link-item" target="_blank">GLISS MASTER</a>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_505up.pdf" class="link-item" target="_blank">505 UP</a>
+                    <a href="https://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Arial.pdf" class="link-item" target="_blank">ARIAL</a>
+
+                </div>
             </div>
         </section>
 
@@ -226,9 +274,9 @@
             <div class="content">
                 <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inline" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
                             営業時間：11:00-18:00 ＜予約制＞<br>
@@ -239,18 +287,16 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6614265418566!2d139.7112531757867!3d35.66071247259395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b2d0b0a590f%3A0xa29bc55b81ede742!2z44OR44Op44OD44OE44Kp44O744Oi44Or44OG44O844OL5p2x5LqsIC8gTW9sdGVuaSZDIFRva3lvIEZsYWdzaGlwIFN0b3Jl!5e0!3m2!1sja!2sjp!4v1774331635844" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
-                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item" target="_blank">フロアツアー</a>
+                    <a href="https://palazzo-molteni-floormap-tour.vercel.app/" class="link-item-trigger" target="_blank">フロアツアー</a>
                     <span class="video-trigger" onclick="toggleVideo(this, '1107962629')">【ムービー】Palazzo Molteni Tokyoについて</span>
-                    <div class="video-wrapper">
-                        <div class="video-container"></div>
-                    </div>
+                    <div class="video-wrapper"><div class="video-container"></div></div>
                 </div>
                 
                 <!-- Osaka Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inline" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             大阪市中央区南船場4丁目-2-11 4F<br>
                             営業時間：11:00-18:00<br>
@@ -299,13 +345,10 @@
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
-                if (nextEl.style.maxHeight === '0px' || nextEl.style.maxHeight === '') {
-                    nextEl.style.maxHeight = '2000px'; 
-                    nextEl.classList.add('show');
-                } else {
-                    nextEl.style.maxHeight = '0px';
-                    nextEl.classList.remove('show');
-                }
+                const isOpen = nextEl.classList.contains('show');
+                nextEl.classList.toggle('show');
+                // コンテンツ量が多いので、開く時は高さを自動調整に近い形にする
+                nextEl.style.maxHeight = isOpen ? '0px' : '4000px'; 
             }
         }
         function toggleVideo(element, vimeoId) {
@@ -314,13 +357,9 @@
             if (!container.innerHTML.trim()) {
                 container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
             }
-            if (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') {
-                wrapper.style.maxHeight = '1500px';
-                wrapper.classList.add('show');
-            } else {
-                wrapper.style.maxHeight = '0px';
-                wrapper.classList.remove('show');
-            }
+            const isOpen = wrapper.classList.contains('show');
+            wrapper.classList.toggle('show');
+            wrapper.style.maxHeight = isOpen ? '0px' : '1000px';
         }
     </script>
 </body>
