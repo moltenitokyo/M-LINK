@@ -16,6 +16,7 @@
             --text-color: #000000;
             --font-h2: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --font-default: "Zen Kaku Gothic New", "Helvetica Neue", Arial, sans-serif;
+            
             --side-padding: 30px;
             --h2-size: 20px;
             --h3-size: 15px;
@@ -165,8 +166,19 @@
             letter-spacing: 0.05em;
         }
 
+        /* プライバシーポリシー用のステルスデザイン */
+        .privacy-policy {
+            margin-top: 60px; /* 他の要素からしっかり離す */
+        }
+        .privacy-link {
+            font-size: 9px;
+            text-decoration: none;
+            color: #999999; /* 背景#E2E2E2に対し目立たないグレー */
+            letter-spacing: 0.05em;
+        }
+
         .footer {
-            margin-top: 50px; font-size: 8px;
+            margin-top: 10px; font-size: 8px;
             opacity: 0.4; letter-spacing: 0.1em;
         }
     </style>
@@ -224,53 +236,41 @@
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjoyOTk5NjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">日本版プライスリスト</a>
                 
-                <!-- 新製品プライス アコーディオン -->
                 <span class="video-trigger" onclick="toggleSub(this)">新製品プライスリスト 2026</span>
                 <div class="video-wrapper-inner">
-                    
                     <span class="category-label">[ Sofa ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Emile.pdf" class="link-item" target="_blank">EMILE</a>
-
                     <span class="category-label">[ Lounge Chair ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lia.pdf" class="link-item" target="_blank">LIA</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Linea.pdf" class="link-item" target="_blank">LINEA</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Eugene.pdf" class="link-item" target="_blank">EUGÈNE</a>
-                     <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk.pdf" class="link-item" target="_blank">MONK - Lounge type</a>
-
+                    <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk.pdf" class="link-item" target="_blank">MONK - Lounge type</a>
                     <span class="category-label">[ Living Table ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Odile.pdf" class="link-item" target="_blank">ODILE</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lea.pdf" class="link-item" target="_blank">LÈA</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Maylis.pdf" class="link-item" target="_blank">MAYLIS</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Fleur.pdf" class="link-item" target="_blank">FLEUR</a>
-                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Penelope.pdf" class="link-item" target="_blank">PÉNÉLOPE</a>
-
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Penelope.pdf" class="link-item" target="_blank">PÉNÉLOPE</a>
                     <span class="category-label">[ Chair ]</span>
-                     <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk_CH.pdf" class="link-item" target="_blank">MONK</a>
-                     <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Outline.pdf" class="link-item" target="_blank">OUTLINE</a>
-
+                    <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Monk_CH.pdf" class="link-item" target="_blank">MONK</a>
+                    <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Outline.pdf" class="link-item" target="_blank">OUTLINE</a>
                     <span class="category-label">[ Table ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Lise.pdf" class="link-item" target="_blank">LISE</a>
                     <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Filigree.pdf" class="link-item" target="_blank">FILIGREE</a>
                     <a href="https://www.arflex.co.jp/catalog/molteni/pricelist/price_Diamond.pdf" class="link-item" target="_blank">DIAMOND</a>
-                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Aria.pdf" class="link-item" target="_blank">ARIA</a>
-
-                     <span class="category-label">[ Bed ]</span>
+                    <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Aria.pdf" class="link-item" target="_blank">ARIA</a>
+                    <span class="category-label">[ Bed ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Tibeau_Bed.pdf" class="link-item" target="_blank">TIBEAU</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Theo_Bed.pdf" class="link-item" target="_blank">THEO</a>
-                    
                     <span class="category-label">[ Caninet ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/pricelist/price_Andromeda.pdf" class="link-item" target="_blank">ANDROMEDA</a>
                     <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Livingbox.pdf" class="link-item" target="_blank">LIVING BOX</a>
-
                     <span class="category-label">[ Wardrobe/Walk-in Closet ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Glissmaster.pdf" class="link-item" target="_blank">GLISS MASTER</a>
-
-                     <span class="category-label">[ System ]</span>
+                    <span class="category-label">[ System ]</span>
                     <a href="http://www.arflex.co.jp/catalog/molteni/detail/detail_composition_505up.pdf" class="link-item" target="_blank">505 UP</a>
-                    
                     <span class="category-label">[ Boiserie and Door ]</span>
                     <a href="https://www.arflex.co.jp/catalog/molteni/detail/detail_composition_Arial.pdf" class="link-item" target="_blank">ARIAL</a>
-
                 </div>
             </div>
         </section>
@@ -279,11 +279,10 @@
         <section class="gap-large">
             <h2 onclick="toggle(this)">STORE</h2>
             <div class="content">
-                <!-- Tokyo Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Palazzo Molteni Tokyo</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inner" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             東京都港区南青山5丁目16-10 PALAZZO MOLTENI<br>
                             営業時間：11:00-18:00 ＜予約制＞<br>
@@ -296,16 +295,13 @@
                     </div>
                     <a href="https://floormap.moltenic.jp/?mode=map&floor=1F&area=init" class="link-item" target="_blank">フロアツアー</a>
                     <span class="video-trigger" onclick="toggleVideo(this, '1107962629')">【ムービー】Palazzo Molteni Tokyoについて</span>
-                    <div class="video-wrapper">
-                        <div class="video-container"></div>
-                    </div>
+                    <div class="video-wrapper"><div class="video-container"></div></div>
                 </div>
                 
-                <!-- Osaka Branch -->
                 <span class="video-trigger" onclick="toggleSub(this)">Molteni&C Osaka</span>
-                <div class="video-wrapper-inner">
+                <div class="video-wrapper-inner" style="padding-left: 10px;">
                     <span class="video-trigger" onclick="toggleSub(this)">インフォメーション</span>
-                    <div class="video-wrapper-inner">
+                    <div class="video-wrapper-inner" style="max-height: 0; overflow: hidden; transition: max-height 0.4s;">
                         <div class="shop-info">
                             大阪市中央区南船場4丁目-2-11 4F<br>
                             営業時間：11:00-18:00<br>
@@ -344,6 +340,11 @@
             <a href="https://jp.pinterest.com/molteniandc/" class="link-item" target="_blank">Pinterest</a>
         </section>
 
+        <!-- プライバシーポリシーリンク -->
+        <div class="privacy-policy">
+            <a href="https://www.arflex.co.jp/company/privacy_policy/" class="privacy-link" target="_blank">プライバシーポリシー</a>
+        </div>
+
         <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
@@ -354,10 +355,9 @@
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
             if (nextEl) {
-                const isOpen = nextEl.classList.contains('show');
-                nextEl.classList.toggle('show');
-                // コンテンツ量が多いので、開く時は高さを自動調整に近い形にする
+                const isOpen = nextEl.style.maxHeight === '4000px';
                 nextEl.style.maxHeight = isOpen ? '0px' : '4000px'; 
+                nextEl.classList.toggle('show');
             }
         }
         function toggleVideo(element, vimeoId) {
@@ -366,9 +366,9 @@
             if (!container.innerHTML.trim()) {
                 container.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&color=ffffff" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
             }
-            const isOpen = wrapper.classList.contains('show');
-            wrapper.classList.toggle('show');
+            const isOpen = wrapper.style.maxHeight === '1000px';
             wrapper.style.maxHeight = isOpen ? '0px' : '1000px';
+            wrapper.classList.toggle('show');
         }
     </script>
 </body>
