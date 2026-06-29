@@ -177,7 +177,7 @@
         /* --- ポップアップ登録フォームのスタイル --- */
         #newsletter-popup {
             position: fixed;
-            bottom: -100%; /* 初期は隠す */
+            bottom: -100%;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
@@ -191,7 +191,7 @@
         }
 
         #newsletter-popup.show {
-            bottom: 30px; /* 浮き上がった時の位置 */
+            bottom: 30px;
         }
 
         .popup-title {
@@ -215,16 +215,6 @@
             gap: 10px;
         }
 
-        .popup-input {
-            background: transparent;
-            border: none;
-            border-bottom: 0.5px solid #000;
-            padding: 8px 0;
-            font-family: var(--font-default);
-            font-size: 13px;
-            outline: none;
-        }
-
         .popup-submit {
             background: #000;
             color: #fff;
@@ -235,6 +225,8 @@
             letter-spacing: 0.1em;
             cursor: pointer;
             margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
 
         .popup-close {
@@ -252,17 +244,17 @@
     <div class="wrapper">
         <img src="logo.png" alt="Molteni&C" class="brand-logo-img">
 
-        <!-- [コンテンツ部分は以前のものをそのまま維持] -->
+        <!-- WHAT'S NEW -->
         <section class="open">
             <h2>WHAT'S NEW</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MzAyNjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">ブランドブック「Molteni Mind」</a>
                 <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">ムービー「Geometry of Life - Chapter2」</a>
-                  <a href="https://molteni.it/jp/landing/milan-design-week-2026" class="link-item" target="_blank">ミラノサローネ2026「Responsive Nature」</a>
+                <a href="https://molteni.it/jp/landing/milan-design-week-2026" class="link-item" target="_blank">ミラノサローネ2026「Responsive Nature」</a>
             </div>
         </section>
 
-         <!-- NEWS -->
+        <!-- NEWS -->
         <section class="gap-large">
             <h2 onclick="toggle(this)">NEWS</h2>
             <div class="content">
@@ -395,6 +387,8 @@
             <div class="content">
                 <a href="https://molteni.it/store/tokyo-flagship-store/jp/?contact=true&request=appointment" class="link-item" target="_blank">来店予約・お問い合わせ</a>
                 <a href="https://www.molteni.it/jp/landing/japan-flagship-store" class="link-item" target="_blank">店舗情報</a>
+                <!-- 能動的な登録ボタン -->
+                <a href="javascript:void(0)" class="link-item" onclick="showPopup()">新着情報の登録 (Subscribe)</a>
             </div>
         </section>
 
@@ -417,7 +411,6 @@
         <div class="popup-close" onclick="closePopup()">×</div>
         <span class="popup-title">Stay Updated</span>
         <p class="popup-text">M-Linkの新着情報をお知らせします</p>
-        <!-- 下記のaction部分にGoogleフォームの送信先URLなどを入れます -->
         <form class="popup-form" action="https://form.arflex.co.jp/l/993142/2026-06-11/2562bq" method="POST" target="_blank" onsubmit="handleRegistration()">
             <button type="submit" class="popup-submit">Subscribe</button>
         </form>
@@ -446,25 +439,30 @@
         }
 
         // --- ポップアップ制御ロジック ---
-        window.onload = function() {
-            // すでに登録済みか閉じた履歴があるかチェック
-            const isSubscribed = localStorage.getItem('molteni_subscribed');
-            if (!isSubscribed) {
-                setTimeout(() => {
-                    document.getElementById('newsletter-popup').classList.add('show');
-                }, 3000); // 3秒後に表示
-            }
-        };
+        function showPopup() {
+            document.getElementById('newsletter-popup').classList.add('show');
+        }
 
         function closePopup() {
             document.getElementById('newsletter-popup').classList.remove('show');
-            // 閉じたことを記録（30日間表示しない等の制御用）
-            localStorage.setItem('molteni_subscribed', 'true');
+            // 現在時刻（ミリ秒）を保存
+            localStorage.setItem('molteni_last_closed', new Date().getTime());
         }
 
+        window.onload = function() {
+            const lastClosed = localStorage.getItem('molteni_last_closed');
+            const now = new Date().getTime();
+            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7日間
+
+            // まだ一度も閉じていない、または最後に閉じてから7日以上経過している場合
+            if (!lastClosed || (now - lastClosed > sevenDays)) {
+                setTimeout(showPopup, 3000);
+            }
+        };
+
         function handleRegistration() {
-            // 登録ボタンが押されたらポップアップを消し、記録する
-            localStorage.setItem('molteni_subscribed', 'true');
+            // 登録ボタンが押された際も閉じた扱いにする
+            localStorage.setItem('molteni_last_closed', new Date().getTime());
             setTimeout(closePopup, 500);
         }
     </script>
