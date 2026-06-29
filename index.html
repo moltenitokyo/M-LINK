@@ -1,9 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- faviconの設定 -->
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="favicon.png">
     <title>Molteni&C</title>
@@ -16,7 +17,6 @@
             --text-color: #000000;
             --font-h2: "Bodoni W01 Roman", "Libre Bodoni", "Bodoni MT", serif;
             --font-default: "Zen Kaku Gothic New", "Helvetica Neue", Arial, sans-serif;
-            
             --side-padding: 30px;
             --h2-size: 20px;
             --h3-size: 15px;
@@ -174,10 +174,10 @@
             opacity: 0.4; letter-spacing: 0.1em;
         }
 
-        /* --- ポップアップ登録フォーム --- */
+        /* --- ポップアップ登録フォームのスタイル（自動・手動共通） --- */
         #newsletter-popup {
             position: fixed;
-            bottom: -100%;
+            bottom: -100%; /* 初期は隠す */
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
@@ -191,7 +191,7 @@
         }
 
         #newsletter-popup.show {
-            bottom: 30px;
+            bottom: 30px; /* 浮き上がった時の位置 */
         }
 
         .popup-title {
@@ -200,6 +200,7 @@
             text-transform: uppercase;
             margin-bottom: 10px;
             display: block;
+            letter-spacing: 0.1em;
         }
 
         .popup-text {
@@ -211,6 +212,16 @@
 
         .popup-form { display: flex; flex-direction: column; gap: 10px; }
 
+        .popup-input {
+            background: transparent;
+            border: none;
+            border-bottom: 0.5px solid #000;
+            padding: 8px 0;
+            font-family: var(--font-default);
+            font-size: 13px;
+            outline: none;
+        }
+
         .popup-submit {
             background: #000;
             color: #fff;
@@ -221,14 +232,15 @@
             letter-spacing: 0.1em;
             cursor: pointer;
             margin-top: 10px;
-            text-align: center;
-            text-decoration: none;
         }
 
         .popup-close {
             position: absolute;
-            top: 10px; right: 15px;
-            font-size: 18px; cursor: pointer; opacity: 0.5;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -242,8 +254,9 @@
             <h2>WHAT'S NEW</h2>
             <div class="content">
                 <a href="https://saas.actibookone.com/content/detail?param=eyJjb250ZW50TnVtIjo3MzAyNjN9&detailFlg=0&pNo=1" class="link-item" target="_blank">ブランドブック「Molteni Mind」</a>
+                <!-- 手動呼び出しボタン -->
+                <span class="link-item" onclick="openPopupManual()" style="cursor:pointer;">新着情報 登録フォーム</span>
                 <a href="https://molteni.it/jp/landing/geometry-of-life" class="link-item" target="_blank">ムービー「Geometry of Life - Chapter2」</a>
-                <a href="https://molteni.it/jp/landing/milan-design-week-2026" class="link-item" target="_blank">ミラノサローネ2026「Responsive Nature」</a>
             </div>
         </section>
 
@@ -268,7 +281,7 @@
             </div>
         </section>
         
-        <!-- CATALOGUE -->
+         <!-- CATALOGUE -->
         <section>
             <h2 onclick="toggle(this)">CATALOGUE</h2>
             <div class="content">
@@ -387,39 +400,33 @@
             </div>
         </section>
 
-        <!-- SUBSCRIBE (独立したセクション) -->
-        <section class="gap-large">
-            <h2 onclick="toggle(this)">SUBSCRIBE</h2>
-            <div class="content">
-                <a href="javascript:void(0)" class="link-item" onclick="showPopup()">新着情報のお知らせを希望する</a>
-            </div>
-        </section>
-
+        <!-- Social Links -->
         <section class="small-links">
             <a href="https://www.instagram.com/molteniandc/" class="link-item" target="_blank">Instagram</a>
             <a href="https://www.youtube.com/@MolteniandC" class="link-item" target="_blank">Youtube</a>
             <a href="https://jp.pinterest.com/molteniandc/" class="link-item" target="_blank">Pinterest</a>
         </section>
 
-        <!-- プライバシーポリシーリンク -->
         <div class="privacy-policy">
-            <a href="https://www.arflex.co.jp/company/privacy_policy/" class="privacy-link" target="_blank">Privacy Policy</a>
+            <a href="PRIVACY_POLICY_URL" class="privacy-link" target="_blank">プライバシーポリシー</a>
         </div>
 
         <div class="footer">&copy; Copyright © ARFLEX JAPAN LTD. All rights reserved.</div>
     </div>
 
-    <!-- ポップアップ登録フォーム -->
+    <!-- ポップアップ登録フォーム本体 -->
     <div id="newsletter-popup">
         <div class="popup-close" onclick="closePopup()">×</div>
         <span class="popup-title">Stay Updated</span>
-        <p class="popup-text">M-Linkの新着情報をお知らせします</p>
-        <form class="popup-form" action="https://form.arflex.co.jp/l/993142/2026-06-11/2562bq" method="POST" target="_blank" onsubmit="handleRegistration()">
-            <button type="submit" class="popup-submit">Subscribe</button>
+        <p class="popup-text">モルテーニの最新コレクションやイベント情報をメールにてお届けいたします。</p>
+        <form class="popup-form" action="YOUR_REGISTRATION_URL" method="POST" target="_blank" onsubmit="handleRegistration()">
+            <input type="email" name="email" class="popup-input" placeholder="Email Address" required>
+            <button type="submit" class="popup-submit">登録する</button>
         </form>
     </div>
 
     <script>
+        // 基本の開閉ロジック
         function toggle(element) { element.parentElement.classList.toggle('open'); }
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
@@ -441,31 +448,31 @@
         }
 
         // --- ポップアップ制御ロジック ---
-        function showPopup() {
+        window.onload = function() {
+            const isSubscribed = localStorage.getItem('molteni_subscribed');
+            if (!isSubscribed) {
+                setTimeout(() => {
+                    document.getElementById('newsletter-popup').classList.add('show');
+                }, 3000); // 3秒後に自動表示
+            }
+        };
+
+        // 手動で開く（メニューボタン用）
+        function openPopupManual() {
             document.getElementById('newsletter-popup').classList.add('show');
         }
 
         function closePopup() {
             document.getElementById('newsletter-popup').classList.remove('show');
-            // 現在のタイムスタンプを保存
-            localStorage.setItem('molteni_last_closed', new Date().getTime());
+            // 閉じたことを記録（自動表示を止める）
+            localStorage.setItem('molteni_subscribed', 'true');
         }
 
-        window.onload = function() {
-            const lastClosed = localStorage.getItem('molteni_last_closed');
-            const now = new Date().getTime();
-            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7日間（ミリ秒）
-
-            // 最後に閉じてから7日以上経過している場合のみ自動表示
-            if (!lastClosed || (now - lastClosed > sevenDays)) {
-                setTimeout(showPopup, 3000);
-            }
-        };
-
         function handleRegistration() {
-            // 登録ボタン押下時も「閉じた」とみなして7日間非表示にする
-            localStorage.setItem('molteni_last_closed', new Date().getTime());
-            setTimeout(closePopup, 500);
+            localStorage.setItem('molteni_subscribed', 'true');
+            setTimeout(() => {
+                document.getElementById('newsletter-popup').classList.remove('show');
+            }, 500);
         }
     </script>
 </body>
