@@ -174,7 +174,7 @@
             opacity: 0.4; letter-spacing: 0.1em;
         }
 
-        /* --- ポップアップ登録フォームのスタイル --- */
+        /* --- ポップアップ登録フォーム --- */
         #newsletter-popup {
             position: fixed;
             bottom: -100%;
@@ -209,11 +209,7 @@
             opacity: 0.7;
         }
 
-        .popup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .popup-form { display: flex; flex-direction: column; gap: 10px; }
 
         .popup-submit {
             background: #000;
@@ -231,11 +227,8 @@
 
         .popup-close {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 18px;
-            cursor: pointer;
-            opacity: 0.5;
+            top: 10px; right: 15px;
+            font-size: 18px; cursor: pointer; opacity: 0.5;
         }
     </style>
 </head>
@@ -387,8 +380,14 @@
             <div class="content">
                 <a href="https://molteni.it/store/tokyo-flagship-store/jp/?contact=true&request=appointment" class="link-item" target="_blank">来店予約・お問い合わせ</a>
                 <a href="https://www.molteni.it/jp/landing/japan-flagship-store" class="link-item" target="_blank">店舗情報</a>
-                <!-- 能動的な登録ボタン -->
-                <a href="javascript:void(0)" class="link-item" onclick="showPopup()">新着情報の登録 (Subscribe)</a>
+            </div>
+        </section>
+
+        <!-- SUBSCRIBE (独立したセクション) -->
+        <section class="gap-large">
+            <h2 onclick="toggle(this)">SUBSCRIBE</h2>
+            <div class="content">
+                <a href="javascript:void(0)" class="link-item" onclick="showPopup()">新着情報の登録</a>
             </div>
         </section>
 
@@ -417,7 +416,6 @@
     </div>
 
     <script>
-        // 基本の開閉ロジック
         function toggle(element) { element.parentElement.classList.toggle('open'); }
         function toggleSub(element) {
             const nextEl = element.nextElementSibling;
@@ -445,23 +443,23 @@
 
         function closePopup() {
             document.getElementById('newsletter-popup').classList.remove('show');
-            // 現在時刻（ミリ秒）を保存
+            // 現在のタイムスタンプを保存
             localStorage.setItem('molteni_last_closed', new Date().getTime());
         }
 
         window.onload = function() {
             const lastClosed = localStorage.getItem('molteni_last_closed');
             const now = new Date().getTime();
-            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7日間
+            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7日間（ミリ秒）
 
-            // まだ一度も閉じていない、または最後に閉じてから7日以上経過している場合
+            // 最後に閉じてから7日以上経過している場合のみ自動表示
             if (!lastClosed || (now - lastClosed > sevenDays)) {
                 setTimeout(showPopup, 3000);
             }
         };
 
         function handleRegistration() {
-            // 登録ボタンが押された際も閉じた扱いにする
+            // 登録ボタン押下時も「閉じた」とみなして7日間非表示にする
             localStorage.setItem('molteni_last_closed', new Date().getTime());
             setTimeout(closePopup, 500);
         }
